@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Rekapitulasi Kategori dan Resep — MASAKin</title>
+</head>
+<body>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Rekapitulasi Kategori dan Resep</h1>
+      <p class="description">Lihat jumlah kategori, jumlah resep, dan resep yang termasuk dalam setiap kategori.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="category-summary-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="category-summary-heading">Ringkasan</h2>
+          <p id="summary-updated" aria-live="polite"></p>
+        </div>
+        <button id="print-summary" type="button">Cetak rekap</button>
+      </div>
+      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="details-heading">
+      <h2 id="details-heading">Detail Kategori dan Resep</h2>
+      <form id="category-search-form" class="filter-form">
+        <label for="category-search">Cari kategori atau nama resep</label>
+        <input id="category-search" type="search" placeholder="Ketik nama kategori atau resep">
+        <div class="form-actions">
+          <button id="clear-search" class="secondary" type="button">Reset</button>
+        </div>
+      </form>
+      <p id="result-status" class="result-count" aria-live="polite"></p>
+      <div id="category-recipe-list" class="category-recipe-list"></div>
+    </section>
+  </main>
+  <script src="rekapitulasikategori.js" defer></script>
+</body>
+</html>
