@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Resep</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html" aria-current="page">Resep</a>
+      <a href="kategori.html">Kategori</a>
+      <a href="filterbahan.html">Cari resep</a>
+      <a href="langkahresep.html">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+    </div>
+  </nav>
+  <main class="manager">
+    <section class="panel" aria-labelledby="recipes-heading">
+      <h2 id="recipes-heading">Resep Masakan</h2>
+      <form id="recipe-form" class="recipe-form">
+        <input id="recipe-id" name="id" type="hidden">
+        <label for="recipe-name">Nama resep</label>
+        <input id="recipe-name" name="name" type="text" maxlength="80"
+          placeholder="Contoh: Soto ayam kampung" required>
+
+        <label for="recipe-category">Kategori</label>
+        <select id="recipe-category" name="category" required>
+          <option value="Masakan Utama">Masakan Utama</option>
+          <option value="Camilan">Camilan</option>
+          <option value="Sayuran">Sayuran</option>
+          <option value="Minuman">Minuman</option>
+        </select>
+
+        <label for="recipe-description">Deskripsi</label>
+        <textarea id="recipe-description" name="description" maxlength="240" rows="3"
+          placeholder="Deskripsi singkat resep"></textarea>
+
+        <label for="recipe-time">Waktu memasak (menit)</label>
+        <input id="recipe-time" name="time" type="number" min="1" max="1440" value="30" required>
+
+        <div class="form-actions">
+          <button type="submit" id="recipe-submit">Tambah resep</button>
+          <button id="cancel-recipe-edit" class="secondary" type="button" hidden>Batal</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="resep.js" defer></script>
+</body>
+</html>

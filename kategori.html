@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Kategori</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html">Resep</a>
+      <a href="kategori.html" aria-current="page">Kategori</a>
+      <a href="filterbahan.html">Cari resep</a>
+      <a href="langkahresep.html">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+    </div>
+  </nav>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Kategori</h1>
+      <p class="description">Tambah, ubah, dan hapus kategori maupun resep. Cari resep berdasarkan nama atau deskripsi, lalu filter berdasarkan kategori.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="categories-heading">
+      <h2 id="categories-heading">Kategori Resep</h2>
+      <form id="category-form" class="category-form">
+        <label for="category-name">Nama kategori</label>
+        <div class="form-actions">
+          <input id="category-name" name="categoryName" type="text" maxlength="40"
+            placeholder="Contoh: Makanan Penutup" required>
+          <button type="submit" id="category-submit">Tambah kategori</button>
+          <button id="cancel-category-edit" class="secondary" type="button" hidden>Batal</button>
+        </div>
+      </form>
+      <ul id="category-list" class="category-list"></ul>
+    </section>
+  </main>
+  <script src="kategori.js" defer></script>
+</body>
+</html>

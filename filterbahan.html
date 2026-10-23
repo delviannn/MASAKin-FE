@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Pencarian Bahan dan Resep — MASAKin</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html">Resep</a>
+      <a href="kategori.html">Kategori</a>
+      <a href="filterbahan.html" aria-current="page">Cari resep</a>
+      <a href="langkahresep.html">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+    </div>
+  </nav>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Pencarian Bahan dan Resep</h1>
+      <p class="description">Cari resep berdasarkan nama, deskripsi, atau bahan yang tersedia, lalu saring berdasarkan kategori.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="filter-heading">
+      <h2 id="filter-heading">Cari Resep</h2>
+      <form id="filter-form" class="filter-form">
+        <label for="recipe-query">Nama atau deskripsi resep</label>
+        <input id="recipe-query" name="recipeQuery" type="search"
+          placeholder="Contoh: soto, pedas, santan">
+
+        <label for="ingredient-query">Bahan yang digunakan</label>
+        <input id="ingredient-query" name="ingredientQuery" type="search"
+          placeholder="Contoh: ayam, bawang putih">
+
+        <label for="category-filter">Kategori</label>
+        <select id="category-filter" name="category">
+          <option value="">Semua kategori</option>
+        </select>
+
+        <div class="form-actions">
+          <button type="submit">Cari</button>
+          <button id="reset-filter" class="secondary" type="button">Reset</button>
+        </div>
+      </form>
+
+      <p id="filter-status" class="result-count" aria-live="polite"></p>
+      <ul id="filter-results" class="recipe-list"></ul>
+    </section>
+  </main>
+  <script src="filterbahan.js" defer></script>
+</body>
+</html>

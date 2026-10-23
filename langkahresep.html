@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Kelola Langkah Resep — MASAKin</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html">Resep</a>
+      <a href="kategori.html">Kategori</a>
+      <a href="filterbahan.html">Cari resep</a>
+      <a href="langkahresep.html" aria-current="page">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+    </div>
+  </nav>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Kelola Langkah Resep</h1>
+      <p class="description">Pilih resep, lalu tambahkan, ubah, atau hapus langkah memasaknya.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="steps-heading">
+      <h2 id="steps-heading">Langkah Memasak</h2>
+      <form id="step-form" class="category-form">
+        <label for="recipe-select">Pilih resep</label>
+        <select id="recipe-select" name="recipe" required></select>
+
+        <label for="step-description">Langkah resep</label>
+        <textarea id="step-description" name="step" maxlength="500" rows="4"
+          placeholder="Contoh: Tumis bawang putih hingga harum." required></textarea>
+
+        <div class="form-actions">
+          <button type="submit" id="step-submit">Tambah langkah</button>
+          <button id="cancel-step-edit" class="secondary" type="button" hidden>Batal</button>
+        </div>
+      </form>
+      <ol id="step-list" class="recipe-list" aria-live="polite"></ol>
+    </section>
+  </main>
+  <script src="langkahresep.js" defer></script>
+</body>
+</html>
