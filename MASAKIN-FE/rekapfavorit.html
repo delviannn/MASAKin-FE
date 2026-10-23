@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Rekapitulasi Favorit — MASAKin</title>
+</head>
+<body>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Rekapitulasi Favorit</h1>
+      <p class="description">Ringkasan resep yang ditandai sebagai favorit beserta kategori, porsi, dan waktu memasaknya.</p>
+    </header>
+
+    <section class="panel favorites-panel" aria-labelledby="favorite-summary-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="favorite-summary-heading">Ringkasan Favorit</h2>
+          <p id="summary-updated" aria-live="polite"></p>
+        </div>
+        <button id="print-summary" type="button">Cetak rekap</button>
+      </div>
+      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="favorite-recipes-heading">
+      <h2 id="favorite-recipes-heading">Daftar Resep Favorit</h2>
+      <form id="favorite-search-form" class="filter-form">
+        <label for="favorite-search">Cari nama resep atau kategori</label>
+        <input id="favorite-search" type="search" placeholder="Contoh: soto atau masakan utama">
+        <div class="form-actions">
+          <button id="clear-search" class="secondary" type="button">Reset</button>
+        </div>
+      </form>
+      <p id="favorite-status" class="result-count" aria-live="polite"></p>
+      <ul id="favorite-list" class="recipe-list favorites-list" aria-live="polite"></ul>
+    </section>
+  </main>
+  <script src="rekapfavorit.js" defer></script>
+</body>
+</html>

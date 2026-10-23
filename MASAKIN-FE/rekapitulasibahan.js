@@ -152,7 +152,7 @@
             <li class="recipe-item">
               <div class="recipe-details">
                 <strong>${escapeHTML(recipe.name || "Resep tanpa nama")}</strong>
-                <span class="recipe-meta">${escapeHTML(recipe.category || "Tanpa kategori")} · ${Number(recipe.time) || 0} menit</span>
+                <span class="recipe-meta">${escapeHTML(recipe.category || "Tanpa kategori")} · ${Number(recipe.servings) || 1} porsi · ${Number(recipe.time) || 0} menit</span>
                 <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
                 <p><strong>Bahan untuk resep ini:</strong> ${ingredients.length
                   ? ingredients.map(escapeHTML).join(", ")

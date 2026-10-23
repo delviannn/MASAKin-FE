@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Kelola Bahan Resep — MASAKin</title>
+</head>
+<body>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Kelola Bahan Resep</h1>
+      <p class="description">Pilih resep untuk menambahkan, mengubah, atau menghapus bahan beserta takarannya.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="ingredients-heading">
+      <h2 id="ingredients-heading">Bahan Resep</h2>
+      <form id="ingredient-form" class="category-form">
+        <label for="recipe-select">Pilih resep</label>
+        <select id="recipe-select" name="recipe" required></select>
+
+        <label for="ingredient-name">Nama bahan dan takaran</label>
+        <input id="ingredient-name" name="ingredient" type="text" maxlength="160"
+          placeholder="Contoh: 2 siung bawang putih" required>
+
+        <div class="form-actions">
+          <button type="submit" id="ingredient-submit">Tambah bahan</button>
+          <button id="cancel-ingredient-edit" class="secondary" type="button" hidden>Batal</button>
+        </div>
+      </form>
+
+      <p id="ingredient-status" class="result-count" aria-live="polite"></p>
+      <ul id="ingredient-list" class="recipe-list" aria-live="polite"></ul>
+    </section>
+  </main>
+  <script src="bahanresep.js" defer></script>
+</body>
+</html>

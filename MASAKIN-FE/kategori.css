@@ -180,6 +180,22 @@ h1 {
   grid-column: 2;
 }
 
+#favorite-search-form {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+#favorite-search-form label {
+  grid-column: 1 / -1;
+}
+
+#favorite-search-form input {
+  grid-column: 1;
+}
+
+#favorite-search-form .form-actions {
+  grid-column: 2;
+}
+
 .category-form,
 .recipe-form,
 .filter-form {
@@ -536,6 +552,12 @@ button.secondary:hover {
     grid-column: 1;
   }
 
+  #favorite-search-form label,
+  #favorite-search-form input,
+  #favorite-search-form .form-actions {
+    grid-column: 1;
+  }
+
   .filter-form label,
   .filter-form label[for="recipe-search"],
   .filter-form label[for="category-filter"],
@@ -582,7 +604,8 @@ button.secondary:hover {
 
   button,
   #ingredient-filter-form,
-  #category-search-form {
+  #category-search-form,
+  #favorite-search-form {
     display: none !important;
   }
 }
