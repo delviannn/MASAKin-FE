@@ -114,6 +114,8 @@
           <p>${escapeHTML(step)}</p>
         </div>
         <div class="item-actions">
+          <button type="button" data-step-move-up="${index}" ${index === 0 ? "disabled" : ""} aria-label="Pindahkan langkah ${index + 1} ke atas">Naik</button>
+          <button type="button" data-step-move-down="${index}" ${index === steps.length - 1 ? "disabled" : ""} aria-label="Pindahkan langkah ${index + 1} ke bawah">Turun</button>
           <button type="button" data-step-edit="${index}">Ubah</button>
           <button class="secondary" type="button" data-step-delete="${index}">Hapus</button>
         </div>
@@ -188,6 +190,28 @@
     const recipe = getSelectedRecipe();
     if (!recipe) return;
     const steps = getSteps(recipe);
+
+    if (button.dataset.stepMoveUp !== undefined || button.dataset.stepMoveDown !== undefined) {
+      const index = Number(button.dataset.stepMoveUp ?? button.dataset.stepMoveDown);
+      const direction = button.dataset.stepMoveUp !== undefined ? -1 : 1;
+      const targetIndex = index + direction;
+      if (!Number.isInteger(index) || targetIndex < 0 || targetIndex >= steps.length) return;
+
+      const reorderedSteps = [...steps];
+      [reorderedSteps[index], reorderedSteps[targetIndex]] =
+        [reorderedSteps[targetIndex], reorderedSteps[index]];
+      const nextData = {
+        ...appData,
+        recipes: appData.recipes.map(item => item.id === recipe.id
+          ? { ...item, steps: reorderedSteps }
+          : item)
+      };
+      if (saveData(nextData)) {
+        resetStepForm();
+        renderSteps();
+      }
+      return;
+    }
 
     if (button.dataset.stepEdit !== undefined) {
       const index = Number(button.dataset.stepEdit);

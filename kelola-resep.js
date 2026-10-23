@@ -94,22 +94,59 @@
       return;
     }
 
-    recipeList.innerHTML = appData.recipes.map(recipe => `
+    recipeList.innerHTML = appData.recipes.map(recipe => {
+      const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+      return `
       <li class="recipe-item">
         <div class="recipe-details">
           <strong>${escapeHTML(recipe.name)}</strong>
           <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.time) || 0} menit</span>
           <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
-          ${Array.isArray(recipe.ingredients) && recipe.ingredients.length
-            ? `<p><strong>Bahan:</strong> ${recipe.ingredients.map(escapeHTML).join(", ")}</p>`
-            : ""}
+          <details class="recipe-ingredients-editor">
+            <summary>Bahan (${ingredients.length})</summary>
+            <ul class="editable-list ingredient-list">
+              ${ingredients.length ? ingredients.map((ingredient, index) => `
+                <li class="ingredient-item">
+                  <span>${escapeHTML(ingredient)}</span>
+                  <span class="item-actions">
+                    <button type="button" data-ingredient-edit="${Number(recipe.id)}" data-ingredient-index="${index}">Ubah</button>
+                    <button class="secondary" type="button" data-ingredient-delete="${Number(recipe.id)}" data-ingredient-index="${index}">Hapus</button>
+                  </span>
+                </li>
+              `).join("") : `<li class="empty-state">Belum ada bahan.</li>`}
+            </ul>
+            <form class="ingredient-add-form" data-ingredient-add="${Number(recipe.id)}">
+              <label class="field-label" for="ingredient-${Number(recipe.id)}">Tambah bahan</label>
+              <div class="form-row">
+                <input class="text-input" id="ingredient-${Number(recipe.id)}" name="ingredient" type="text" maxlength="160" placeholder="Contoh: 2 siung bawang putih" required>
+                <button type="submit">Tambah</button>
+              </div>
+            </form>
+          </details>
         </div>
         <div class="item-actions">
+          <button class="favorite-button ${recipe.favorite === true ? "is-favorite" : ""}" type="button"
+            data-recipe-favorite="${Number(recipe.id)}"
+            aria-pressed="${recipe.favorite === true}"
+            aria-label="${recipe.favorite === true ? "Hapus dari favorit" : "Tambahkan ke favorit"}">
+            ${recipe.favorite === true ? "★ Favorit" : "☆ Favorit"}
+          </button>
           <button type="button" data-recipe-edit="${Number(recipe.id)}">Ubah</button>
           <button class="secondary" type="button" data-recipe-delete="${Number(recipe.id)}">Hapus</button>
         </div>
       </li>
-    `).join("");
+    `;
+    }).join("");
+  }
+
+  function saveRecipeIngredients(recipeId, ingredients) {
+    const nextData = {
+      ...appData,
+      recipes: appData.recipes.map(recipe => recipe.id === recipeId
+        ? { ...recipe, ingredients }
+        : recipe)
+    };
+    if (saveData(nextData)) renderRecipes();
   }
 
   function render() {
@@ -211,6 +248,53 @@
     const button = event.target.closest("button");
     if (!button || !recipeList.contains(button)) return;
 
+    if (button.dataset.ingredientEdit !== undefined || button.dataset.ingredientDelete !== undefined) {
+      const recipeId = Number(button.dataset.ingredientEdit ?? button.dataset.ingredientDelete);
+      const recipe = appData.recipes.find(item => item.id === recipeId);
+      const ingredients = Array.isArray(recipe?.ingredients) ? [...recipe.ingredients] : [];
+      const index = Number(button.dataset.ingredientIndex);
+      if (!recipe || !Number.isInteger(index) || index < 0 || index >= ingredients.length) {
+        renderRecipes();
+        alert("Bahan tidak ditemukan. Daftar telah diperbarui.");
+        return;
+      }
+
+      if (button.dataset.ingredientEdit !== undefined) {
+        const value = prompt("Ubah nama bahan:", ingredients[index]);
+        if (value === null) return;
+        const updatedIngredient = value.trim();
+        if (!updatedIngredient) {
+          alert("Nama bahan tidak boleh kosong.");
+          return;
+        }
+        ingredients[index] = updatedIngredient;
+      } else {
+        if (!confirm(`Hapus bahan \"${ingredients[index]}\" dari resep \"${recipe.name}\"?`)) return;
+        ingredients.splice(index, 1);
+      }
+
+      saveRecipeIngredients(recipe.id, ingredients);
+      return;
+    }
+
+    if (button.dataset.recipeFavorite !== undefined) {
+      const id = Number(button.dataset.recipeFavorite);
+      const recipe = appData.recipes.find(item => item.id === id);
+      if (!recipe) {
+        renderRecipes();
+        alert("Resep tidak ditemukan. Daftar telah diperbarui.");
+        return;
+      }
+      const nextData = {
+        ...appData,
+        recipes: appData.recipes.map(item => item.id === id
+          ? { ...item, favorite: item.favorite !== true }
+          : item)
+      };
+      if (saveData(nextData)) renderRecipes();
+      return;
+    }
+
     if (button.dataset.recipeEdit !== undefined) {
       const recipe = appData.recipes.find(item => item.id === Number(button.dataset.recipeEdit));
       if (!recipe) {
@@ -253,6 +337,22 @@
         renderRecipes();
       }
     }
+  });
+
+  recipeList.addEventListener("submit", event => {
+    const form = event.target.closest("[data-ingredient-add]");
+    if (!form || !recipeList.contains(form)) return;
+    event.preventDefault();
+
+    const recipeId = Number(form.dataset.ingredientAdd);
+    const recipe = appData.recipes.find(item => item.id === recipeId);
+    const value = new FormData(form).get("ingredient");
+    const ingredient = typeof value === "string" ? value.trim() : "";
+    if (!recipe || !ingredient) return;
+
+    const ingredients = Array.isArray(recipe.ingredients) ? [...recipe.ingredients] : [];
+    ingredients.push(ingredient);
+    saveRecipeIngredients(recipe.id, ingredients);
   });
 
   cancelRecipeEdit.addEventListener("click", closeRecipeForm);
