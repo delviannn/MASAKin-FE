@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Rekapitulasi Bahan dan Resep — MASAKin</title>
+</head>
+<body>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Rekapitulasi Bahan dan Resep</h1>
+      <p class="description">Ringkasan jumlah resep dan bahan berdasarkan data resep yang sudah tersimpan.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="summary-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="summary-heading">Ringkasan</h2>
+          <p id="summary-updated" aria-live="polite"></p>
+        </div>
+        <button id="print-summary" type="button">Cetak rekap</button>
+      </div>
+      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="categories-heading">
+      <h2 id="categories-heading">Resep per Kategori</h2>
+      <ul id="category-summary" class="recipe-list"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="recipes-heading">
+      <h2 id="recipes-heading">Bahan per Resep</h2>
+      <p class="description">Setiap resep menampilkan bahan yang tersimpan khusus untuk resep tersebut.</p>
+      <p id="recipe-status" class="result-count" aria-live="polite"></p>
+      <ul id="recipe-ingredient-summary" class="recipe-list"></ul>
+    </section>
+
+    <section class="panel" aria-labelledby="ingredients-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="ingredients-heading">Rekap Bahan</h2>
+          <p>Setiap bahan dihitung satu kali per resep yang menggunakannya.</p>
+        </div>
+      </div>
+      <form id="ingredient-filter-form" class="filter-form">
+        <label for="ingredient-filter">Cari bahan atau resep</label>
+        <input id="ingredient-filter" type="search" placeholder="Contoh: bawang atau soto">
+        <div class="form-actions">
+          <button id="clear-ingredient-filter" class="secondary" type="button">Reset</button>
+        </div>
+      </form>
+      <p id="ingredient-status" class="result-count" aria-live="polite"></p>
+      <ul id="ingredient-summary" class="recipe-list"></ul>
+    </section>
+  </main>
+  <script src="rekapitulasibahan.js" defer></script>
+</body>
+</html>
