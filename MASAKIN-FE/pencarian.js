@@ -89,7 +89,7 @@
       <li class="recipe-item">
         <div class="recipe-details">
           <strong>${escapeHTML(recipe.name)}</strong>
-          <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.time) || 0} menit</span>
+          <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.servings) || 1} porsi · ${Number(recipe.time) || 0} menit</span>
           <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
         </div>
         ${recipe.favorite === true ? `<span class="favorite-count">★ Menu Favorit</span>` : ""}

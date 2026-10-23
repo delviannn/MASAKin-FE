@@ -10,7 +10,7 @@
   const recipeNameInput = document.getElementById("recipe-name");
   const recipeCategory = document.getElementById("recipe-category");
   const recipeDescriptionInput = document.getElementById("recipe-description");
-  const recipeIngredientsInput = document.getElementById("recipe-ingredients");
+  const recipeServingsInput = document.getElementById("recipe-servings");
   const recipeTimeInput = document.getElementById("recipe-time");
   const recipeSubmit = document.getElementById("recipe-submit");
   const cancelRecipeEdit = document.getElementById("cancel-recipe-edit");
@@ -19,7 +19,7 @@
   if (
     !recipeFormPanel || !addRecipeButton || !recipeForm || !recipeIdInput ||
     !recipeNameInput || !recipeCategory || !recipeDescriptionInput ||
-    !recipeIngredientsInput || !recipeTimeInput || !recipeSubmit ||
+    !recipeServingsInput || !recipeTimeInput || !recipeSubmit ||
     !cancelRecipeEdit || !recipeList
   ) {
     throw new Error("Elemen pengelolaan resep tidak ditemukan di kelola-resep.html.");
@@ -98,11 +98,8 @@
       <li class="recipe-item">
         <div class="recipe-details">
           <strong>${escapeHTML(recipe.name)}</strong>
-          <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.time) || 0} menit</span>
+          <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.servings) || 1} porsi · ${Number(recipe.time) || 0} menit</span>
           <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
-          ${Array.isArray(recipe.ingredients) && recipe.ingredients.length
-            ? `<p><strong>Bahan:</strong> ${recipe.ingredients.map(escapeHTML).join(", ")}</p>`
-            : ""}
         </div>
         <div class="item-actions">
           <button type="button" data-recipe-edit="${Number(recipe.id)}">Ubah</button>
@@ -123,6 +120,7 @@
     editingRecipeId = null;
     recipeSubmit.textContent = "Simpan resep";
     cancelRecipeEdit.hidden = true;
+    recipeServingsInput.value = "1";
     recipeTimeInput.value = "30";
     if (appData.categories.length) recipeCategory.value = appData.categories[0];
   }
@@ -166,10 +164,12 @@
     const formData = new FormData(recipeForm);
     const name = String(formData.get("name") || "").trim();
     const category = String(formData.get("category") || "");
+    const servings = Number(formData.get("servings"));
     const time = Number(formData.get("time"));
     if (!name || !appData.categories.includes(category) ||
+      !Number.isInteger(servings) || servings < 1 || servings > 1000 ||
       !Number.isInteger(time) || time < 1 || time > 1440) {
-      alert("Periksa nama, kategori, dan waktu memasak resep.");
+      alert("Periksa nama, kategori, porsi, dan waktu memasak resep.");
       return;
     }
 
@@ -186,12 +186,12 @@
       name,
       category,
       description: String(formData.get("description") || "").trim(),
-      ingredients: String(formData.get("ingredients") || "")
-        .split(/\r?\n/)
-        .map(ingredient => ingredient.trim())
-        .filter(Boolean),
+      servings,
       time,
       favorite: existingRecipe?.favorite ?? false,
+      ...(Array.isArray(existingRecipe?.ingredients)
+        ? { ingredients: existingRecipe.ingredients }
+        : {}),
       ...(existingRecipe?.steps ? { steps: existingRecipe.steps } : {})
     };
     const nextData = {
@@ -224,9 +224,7 @@
       recipeNameInput.value = recipe.name;
       recipeCategory.value = recipe.category;
       recipeDescriptionInput.value = recipe.description || "";
-      recipeIngredientsInput.value = Array.isArray(recipe.ingredients)
-        ? recipe.ingredients.join("\n")
-        : "";
+      recipeServingsInput.value = String(recipe.servings || 1);
       recipeTimeInput.value = String(recipe.time || 30);
       recipeSubmit.textContent = "Simpan perubahan";
       cancelRecipeEdit.hidden = false;
