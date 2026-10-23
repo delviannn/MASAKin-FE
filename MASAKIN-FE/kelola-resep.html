@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Kelola Resep — MASAKin</title>
+</head>
+<body>
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Kelola Resep</h1>
+      <p class="description">Tambah, ubah, dan hapus resep. Data tersimpan bersama daftar resep MASAKin.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="recipes-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="recipes-heading">Resep yang Sudah Ditambahkan</h2>
+          <p>Edit detail resep atau hapus resep yang tidak diinginkan.</p>
+        </div>
+        <button id="add-recipe" type="button">Tambah resep</button>
+      </div>
+      <ul id="recipe-list" class="recipe-list" aria-live="polite"></ul>
+    </section>
+
+    <section id="recipe-form-panel" class="panel" aria-labelledby="recipe-form-heading" hidden>
+      <h2 id="recipe-form-heading">Detail Resep</h2>
+      <form id="recipe-form" class="recipe-form">
+        <input id="recipe-id" name="id" type="hidden">
+
+        <label for="recipe-name">Nama resep</label>
+        <input id="recipe-name" name="name" type="text" maxlength="80"
+          placeholder="Contoh: Soto ayam kampung" required>
+
+        <label for="recipe-category">Kategori</label>
+        <select id="recipe-category" name="category" required></select>
+
+        <label for="recipe-description">Deskripsi</label>
+        <textarea id="recipe-description" name="description" maxlength="240" rows="3"
+          placeholder="Deskripsi singkat resep"></textarea>
+
+        <label for="recipe-ingredients">Bahan-bahan</label>
+        <textarea id="recipe-ingredients" name="ingredients" maxlength="2000" rows="4"
+          placeholder="Masukkan satu bahan per baris, contoh:&#10;2 siung bawang putih&#10;1 sdm minyak"></textarea>
+
+        <label for="recipe-time">Waktu memasak (menit)</label>
+        <input id="recipe-time" name="time" type="number" min="1" max="1440" value="30" required>
+
+        <div class="form-actions">
+          <button type="submit" id="recipe-submit">Simpan resep</button>
+          <button id="cancel-recipe-edit" class="secondary" type="button" hidden>Batal</button>
+        </div>
+      </form>
+    </section>
+  </main>
+  <script src="kelola-resep.js" defer></script>
+</body>
+</html>
