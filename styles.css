@@ -560,6 +560,31 @@ button:focus-visible {
   outline-offset: 3px;
 }
 
+.recipe-favorite-button {
+  display: block;
+  width: calc(100% - 24px);
+  min-height: 34px;
+  margin: 0 12px 12px;
+  padding: 7px 10px;
+  border-color: #dfcbb9;
+  background: #f7f0e9;
+  color: #654321;
+  font-size: 11px;
+}
+
+.recipe-favorite-button[aria-pressed="true"] {
+  border-color: #795536;
+  background: #e8d8c8;
+}
+
+.home-detail-favorite {
+  min-height: 36px;
+  margin: 0 0 18px;
+  border-color: #c9b49d;
+  background: #f5eee7;
+  color: #654321;
+}
+
 .recipe-image {
   position: relative;
   display: grid;

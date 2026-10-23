@@ -3,6 +3,8 @@ const landingPage = main.innerHTML;
 let selectedRecipeId = null;
 let editingIngredientIndex = null;
 let ingredientSearchTerm = "";
+const STORAGE_KEY = "masakin_mahasiswa1_v1";
+const DEFAULT_CATEGORIES = ["Masakan Utama", "Camilan", "Sayuran", "Minuman"];
 
 const recipes = {
   "nasi-goreng": {
@@ -80,6 +82,94 @@ function escapeHtml(value) {
   }[character]));
 }
 
+function loadFavoriteData() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (!saved) return { categories: [...DEFAULT_CATEGORIES], recipes: [] };
+  const data = JSON.parse(saved);
+  if (!data || !Array.isArray(data.categories) || !Array.isArray(data.recipes)) {
+    throw new Error("Data MASAKin tersimpan tidak valid.");
+  }
+  return data;
+}
+
+function isHomeRecipeFavorite(recipeId) {
+  try {
+    const recipeName = recipes[recipeId]?.name?.toLocaleLowerCase("id");
+    const data = loadFavoriteData();
+    return data.recipes.some(recipe =>
+      String(recipe.name || "").toLocaleLowerCase("id") === recipeName && recipe.favorite === true
+    );
+  } catch (error) {
+    console.error("Status favorit gagal dibaca:", error);
+    return false;
+  }
+}
+
+function toggleHomeFavorite(recipeId) {
+  const homeRecipe = recipes[recipeId];
+  if (!homeRecipe) return null;
+
+  try {
+    const data = loadFavoriteData();
+    const normalizedName = homeRecipe.name.toLocaleLowerCase("id");
+    const existing = data.recipes.find(recipe =>
+      String(recipe.name || "").toLocaleLowerCase("id") === normalizedName
+    );
+    let favorite;
+    let nextRecipes;
+
+    if (existing) {
+      favorite = existing.favorite !== true;
+      nextRecipes = data.recipes.map(recipe => recipe.id === existing.id
+        ? { ...recipe, favorite }
+        : recipe);
+    } else {
+      const category = recipeId === "pisang-goreng" ? "Camilan" : "Masakan Utama";
+      if (!data.categories.includes(category)) data.categories.push(category);
+      const time = Number(homeRecipe.time.match(/\d+/)?.[0]) || 30;
+      const newRecipe = {
+        id: Math.max(0, ...data.recipes.map(recipe => Number(recipe.id) || 0)) + 1,
+        name: homeRecipe.name,
+        category,
+        description: homeRecipe.description,
+        time,
+        ingredients: [...homeRecipe.ingredients],
+        steps: [...homeRecipe.steps],
+        favorite: true
+      };
+      favorite = true;
+      nextRecipes = [newRecipe, ...data.recipes];
+    }
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ ...data, recipes: nextRecipes }));
+    return favorite;
+  } catch (error) {
+    console.error("Perubahan favorit gagal disimpan:", error);
+    alert("Favorit gagal disimpan. Periksa penyimpanan browser.");
+    return null;
+  }
+}
+
+function updateHomeFavoriteButtons() {
+  document.querySelectorAll("[data-home-favorite]").forEach(button => {
+    const favorite = isHomeRecipeFavorite(button.dataset.homeFavorite);
+    button.setAttribute("aria-pressed", String(favorite));
+    button.textContent = favorite ? "★ Hapus favorit" : "☆ Tambah favorit";
+  });
+
+  const favoriteCountCard = [...document.querySelectorAll(".stat-card")]
+    .find(card => card.querySelector("p")?.textContent.trim() === "Menu favorit");
+  if (favoriteCountCard) {
+    try {
+      favoriteCountCard.querySelector("strong").textContent = String(
+        loadFavoriteData().recipes.filter(recipe => recipe.favorite === true).length
+      ).padStart(2, "0");
+    } catch (error) {
+      console.error("Jumlah favorit gagal dimuat:", error);
+    }
+  }
+}
+
 function renderRecipeDetail(shouldScrollToTop = true) {
   const recipe = recipes[selectedRecipeId];
   if (!recipe) return;
@@ -96,6 +186,10 @@ function renderRecipeDetail(shouldScrollToTop = true) {
       <h1>${escapeHtml(recipe.name)}</h1>
       <p class="recipe-info">${escapeHtml(recipe.time)} · ${escapeHtml(recipe.difficulty)}</p>
       <p>${escapeHtml(recipe.description)}</p>
+      <button class="home-detail-favorite" type="button" data-toggle-home-favorite="${selectedRecipeId}"
+        aria-pressed="${isHomeRecipeFavorite(selectedRecipeId)}">
+        ${isHomeRecipeFavorite(selectedRecipeId) ? "★ Hapus favorit" : "☆ Tambah favorit"}
+      </button>
 
       <div class="detail-columns">
         <section class="detail-panel" id="detail-bahan">
@@ -155,6 +249,17 @@ function renderRecipeDetail(shouldScrollToTop = true) {
 }
 
 main.addEventListener("click", event => {
+  const favoriteButton = event.target.closest("[data-home-favorite], [data-toggle-home-favorite]");
+  if (favoriteButton) {
+    const recipeId = favoriteButton.dataset.homeFavorite || favoriteButton.dataset.toggleHomeFavorite;
+    const favorite = toggleHomeFavorite(recipeId);
+    if (favorite !== null) {
+      updateHomeFavoriteButtons();
+      if (main.dataset.view === "detail") renderRecipeDetail(false);
+    }
+    return;
+  }
+
   const recipeButton = event.target.closest("[data-recipe-id]");
   if (recipeButton) {
     const recipe = recipes[recipeButton.dataset.recipeId];
@@ -166,6 +271,7 @@ main.addEventListener("click", event => {
     main.innerHTML = landingPage;
     delete main.dataset.view;
     selectedRecipeId = null;
+    updateHomeFavoriteButtons();
     window.scrollTo(0, 0);
     return;
   }
@@ -244,3 +350,5 @@ main.addEventListener("input", event => {
     searchInput.setSelectionRange(cursorPosition, cursorPosition);
   }
 });
+
+updateHomeFavoriteButtons();
