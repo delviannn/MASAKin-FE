@@ -3,55 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style/kategori.css">
-  <title>Pencarian Bahan dan Resep — MASAKin</title>
+  <meta name="theme-color" content="#f8f7f4">
+  <title>Cari Resep — MASAKin</title>
+  <link rel="stylesheet" href="../style/styles.css">
 </head>
 <body>
-  <nav class="site-navbar" aria-label="Navigasi utama">
-    <a class="site-brand" href="index.html"><img src="../assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
-    <div class="site-nav-links">
-      <a href="index.html">Dashboard</a>
-      <a href="kelola-resep.html">Resep</a>
-      <a href="favorit.html">Favorit</a>
-      <a href="daftar-belanja.html">Daftar belanja</a>
-      <a href="filterbahan.html" aria-current="page">Cari resep</a>
-      <a href="laporan.html">Laporan</a>
-      <a href="profil.html">Profil</a>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="index.html" aria-label="MASAKin, dashboard"><img class="brand-logo" src="../assets/masakin-logo.jpeg" alt="Logo MASAKin"></a>
+      <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link" href="index.html"><span aria-hidden="true">⌂</span> Dashboard</a>
+        <a class="nav-link" href="kelola-resep.html"><span aria-hidden="true">◧</span> Resep</a>
+        <a class="nav-link active" href="filterbahan.html" aria-current="page"><span aria-hidden="true">⌕</span> Cari Resep</a>
+        <a class="nav-link" href="favorit.html"><span aria-hidden="true">♡</span> Favorit</a>
+        <a class="nav-link" href="daftar-belanja.html"><span aria-hidden="true">▦</span> Daftar Belanja</a>
+        <a class="nav-link" href="laporan.html"><span aria-hidden="true">▧</span> Laporan</a>
+        <a class="nav-link" href="profil.html"><span aria-hidden="true">◉</span> Profil</a>
+      </nav>
+      <div class="sidebar-note"><span class="note-icon" aria-hidden="true">✦</span><strong>Masak lebih mudah</strong><p>Simpan resep keluarga dan temukan inspirasi untuk hari ini.</p><a href="kelola-resep.html">Mulai kelola resep <span aria-hidden="true">→</span></a></div>
+      <p class="sidebar-copyright">MASAKin · Resep jadi cerita.</p>
+    </aside>
+    <div class="main-content">
+      <header class="topbar"><div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div><p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p><a class="avatar" href="profil.html" aria-label="Buka profil">D</a></header>
+      <main>
+        <section class="welcome-row"><div><p class="eyebrow">TEMUKAN INSPIRASI</p><h1>Cari resep <span aria-hidden="true">✦</span></h1><p class="welcome-copy">Temukan masakan dari nama, kategori, atau bahan yang tersedia.</p></div></section>
+        <section class="panel search-panel" aria-labelledby="filter-heading">
+          <div class="section-heading"><div><p class="eyebrow">PENCARIAN DAPUR</p><h2 id="filter-heading">Resep apa yang ingin kamu masak?</h2></div></div>
+          <form id="filter-form" class="filter-form">
+            <div class="field"><label for="recipe-query">Nama atau deskripsi resep</label><input id="recipe-query" name="recipeQuery" type="search" placeholder="Contoh: soto, pedas, santan"></div>
+            <div class="field"><label for="ingredient-query">Bahan yang digunakan</label><input id="ingredient-query" name="ingredientQuery" type="search" placeholder="Contoh: ayam, bawang putih"></div>
+            <div class="field"><label for="category-filter">Kategori</label><select id="category-filter" name="category"><option value="">Semua kategori</option></select></div>
+            <div class="form-actions"><button class="button button-primary" type="submit">Cari resep</button><button id="reset-filter" class="button button-secondary" type="button">Reset</button></div>
+          </form>
+          <p id="filter-status" class="section-copy search-status" aria-live="polite"></p>
+          <ul id="filter-results" class="recipe-list filter-results" aria-live="polite"></ul>
+        </section>
+      </main>
+      <footer class="page-footer"><span>© 2026 MASAKin</span><span>Dari dapur keluarga, untuk cerita bersama.</span><a href="kelola-resep.html">Tambah resep →</a></footer>
     </div>
-  </nav>
-  <main class="manager">
-    <header class="page-header">
-      <span class="badge">MASAKin</span>
-      <h1>Pencarian Bahan dan Resep</h1>
-      <p class="description">Cari resep berdasarkan nama, deskripsi, atau bahan yang tersedia, lalu saring berdasarkan kategori.</p>
-    </header>
-
-    <section class="panel" aria-labelledby="filter-heading">
-      <h2 id="filter-heading">Cari Resep</h2>
-      <form id="filter-form" class="filter-form">
-        <label for="recipe-query">Nama atau deskripsi resep</label>
-        <input id="recipe-query" name="recipeQuery" type="search"
-          placeholder="Contoh: soto, pedas, santan">
-
-        <label for="ingredient-query">Bahan yang digunakan</label>
-        <input id="ingredient-query" name="ingredientQuery" type="search"
-          placeholder="Contoh: ayam, bawang putih">
-
-        <label for="category-filter">Kategori</label>
-        <select id="category-filter" name="category">
-          <option value="">Semua kategori</option>
-        </select>
-
-        <div class="form-actions">
-          <button type="submit">Cari</button>
-          <button id="reset-filter" class="secondary" type="button">Reset</button>
-        </div>
-      </form>
-
-      <p id="filter-status" class="result-count" aria-live="polite"></p>
-      <ul id="filter-results" class="recipe-list"></ul>
-    </section>
-  </main>
+  </div>
   <script src="../script/sample-data.js" defer></script>
   <script src="../script/filterbahan.js" defer></script>
 </body>

@@ -1186,3 +1186,14 @@ button:focus-visible {
 @media (max-width:520px) { .panel { padding: 16px; } .category-field { align-items: stretch; flex-direction: column; } .category-field .button-secondary { align-self: flex-start; } .ingredient-row { grid-template-columns: 1fr 1fr; } .ingredient-row .item-editor-field:first-child { grid-column: 1 / -1; } .step-row { grid-template-columns: 1fr; } .step-actions { justify-content: flex-start; } .recipe-list { grid-template-columns: 1fr; } }
 
 @media (max-width:760px) { .recipe-card:last-child { display:block; } }
+.filter-form { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin-top: 20px; }
+.filter-form .field { display: grid; min-width: 0; gap: 7px; color: #514a43; font-size: 11px; font-weight: 700; }
+.filter-form input, .filter-form select { width: 100%; min-width: 0; min-height: 39px; padding: 9px 11px; border: 1px solid #e6ded5; border-radius: 8px; background: #fff; color: var(--ink); font: inherit; font-size: 11px; }
+.filter-form .form-actions { grid-column: 1 / -1; display: flex; gap: 8px; }
+.search-status { margin: 17px 0 0; }
+.filter-results { grid-template-columns: 1fr; margin-top: 10px; }
+.filter-results .recipe-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
+.filter-results .recipe-details { min-width: 0; }
+.filter-results .recipe-details > strong { color: #39312b; font-family: "Playfair Display", Georgia, serif; font-size: 16px; }
+.filter-results .recipe-details p { margin: 8px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
+@media (max-width:760px) { .filter-form { grid-template-columns: 1fr; } .filter-form .form-actions { grid-column: auto; } }
