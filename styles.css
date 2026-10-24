@@ -532,12 +532,11 @@ p {
   border: 1px solid var(--line);
   border-radius: 12px;
   background: var(--paper);
-  transition: box-shadow .18s ease, transform .18s ease;
+  transition: border-color .18s ease;
 }
 
 .recipe-card:hover {
-  box-shadow: 0 9px 25px rgba(57, 43, 30, .08);
-  transform: translateY(-2px);
+  border-color: #dfd4c8;
 }
 
 .recipe-open {
@@ -566,23 +565,35 @@ button:focus-visible {
   min-height: 34px;
   margin: 0 12px 12px;
   padding: 7px 10px;
-  border-color: #dfcbb9;
-  background: #f7f0e9;
-  color: #654321;
+  border: 1px solid #e5d8ca;
+  border-radius: 999px;
+  background: #f8f4ef;
+  color: #71563f;
   font-size: 11px;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+
+.recipe-favorite-button:hover,
+.home-detail-favorite:hover {
+  border-color: #cdb9a5;
+  background: #f1e9e0;
+  color: #62432f;
 }
 
 .recipe-favorite-button[aria-pressed="true"] {
-  border-color: #795536;
-  background: #e8d8c8;
+  border-color: #d7c2ad;
+  background: #eee3d7;
+  color: #62432f;
 }
 
 .home-detail-favorite {
   min-height: 36px;
   margin: 0 0 18px;
-  border-color: #c9b49d;
-  background: #f5eee7;
-  color: #654321;
+  border: 1px solid #e5d8ca;
+  border-radius: 999px;
+  background: #f8f4ef;
+  color: #71563f;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
 }
 
 .recipe-image {

@@ -12,6 +12,7 @@
     <div class="site-nav-links">
       <a href="index.html">Beranda</a>
       <a href="kelola-resep.html" aria-current="page">Resep</a>
+      <a href="kelola-bahan.html">Bahan</a>
       <a href="kategori.html">Kategori</a>
       <a href="filterbahan.html">Cari resep</a>
       <a href="langkahresep.html">Langkah</a>
@@ -54,9 +55,8 @@
         <textarea id="recipe-description" name="description" maxlength="240" rows="3"
           placeholder="Deskripsi singkat resep"></textarea>
 
-        <label for="recipe-ingredients">Bahan-bahan</label>
-        <textarea id="recipe-ingredients" name="ingredients" maxlength="2000" rows="4"
-          placeholder="Masukkan satu bahan per baris, contoh:&#10;2 siung bawang putih&#10;1 sdm minyak"></textarea>
+        <label for="recipe-servings">Porsi</label>
+        <input id="recipe-servings" name="servings" type="number" min="1" max="20" value="2" required>
 
         <label for="recipe-time">Waktu memasak (menit)</label>
         <input id="recipe-time" name="time" type="number" min="1" max="1440" value="30" required>

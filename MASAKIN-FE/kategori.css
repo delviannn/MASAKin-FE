@@ -74,14 +74,14 @@ h1 {
   margin-top: 18px;
   padding: 22px;
   border: 1px solid #e7ddd2;
-  border-radius: 16px;
+  border-radius: 13px;
   background: #fff;
-  box-shadow: 0 5px 18px rgba(54, 39, 24, .05);
+  box-shadow: none;
 }
 
 .favorites-panel {
-  border-color: #d8c5b2;
-  background: #fcfaf7;
+  border-color: #e5dbd0;
+  background: #fff;
 }
 
 .panel h2 {
@@ -269,8 +269,8 @@ button {
   min-height: 40px;
   padding: 9px 14px;
   border: 1px solid #795536;
-  border-radius: 9px;
-  background: #795536;
+  border-radius: 11px;
+  background: #79563e;
   color: #fff;
   font-size: 13px;
   font-weight: 650;
@@ -279,8 +279,8 @@ button {
 }
 
 button:hover {
-  border-color: #5f4028;
-  background: #5f4028;
+  border-color: #62432f;
+  background: #62432f;
 }
 
 button:disabled {
@@ -353,15 +353,22 @@ button.secondary:hover {
 }
 
 .item-actions button.favorite-button {
-  border-color: #c9b49d;
-  background: #f5eee7;
-  color: #654321;
+  border-color: #e2d5c7;
+  border-radius: 999px;
+  background: #f8f4ef;
+  color: #71563f;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
 }
 
 .item-actions button.favorite-button:hover,
 .item-actions button.favorite-button.is-favorite {
-  border-color: #795536;
-  background: #e8d8c8;
+  border-color: #d1bba5;
+  background: #eee3d7;
+  color: #62432f;
+}
+
+.item-actions button.favorite-button:hover {
+  background: #e8dbcd;
 }
 
 .filter-form {

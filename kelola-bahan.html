@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Kelola Bahan Resep — MASAKin</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html">Resep</a>
+      <a href="kelola-bahan.html" aria-current="page">Bahan</a>
+      <a href="kategori.html">Kategori</a>
+      <a href="filterbahan.html">Cari resep</a>
+      <a href="langkahresep.html">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+      <a href="rekapitulasifavorit.html">Rekap favorit</a>
+    </div>
+  </nav>
+
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Kelola Bahan Resep</h1>
+      <p class="description">Tambahkan, ubah, dan hapus bahan untuk setiap resep yang sudah tersimpan.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="ingredient-summary-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="ingredient-summary-heading">Ringkasan bahan</h2>
+          <p id="summary-updated" aria-live="polite"></p>
+        </div>
+      </div>
+      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section class="panel ingredient-manager-panel" aria-labelledby="ingredient-manager-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="ingredient-manager-heading">Atur bahan per resep</h2>
+          <p>Pilih resep terlebih dahulu, lalu kelola daftar bahannya.</p>
+        </div>
+      </div>
+
+      <form id="ingredient-selector-form" class="filter-form">
+        <label for="recipe-select">Pilih resep</label>
+        <select id="recipe-select" name="recipe-select"></select>
+        <div class="form-actions">
+          <button id="refresh-data" class="secondary" type="button">Segarkan</button>
+        </div>
+      </form>
+
+      <div class="section-heading ingredient-list-heading">
+        <div>
+          <h3 id="selected-recipe-title">Daftar bahan</h3>
+        </div>
+        <span id="ingredient-count" class="favorite-count" aria-live="polite"></span>
+      </div>
+
+      <ul id="ingredient-list" class="recipe-list" aria-live="polite"></ul>
+
+      <form id="ingredient-form" class="ingredient-inline-form">
+        <label class="ingredient-inline-label" for="ingredient-name">Tambah bahan baru</label>
+        <input id="ingredient-name" class="ingredient-inline-input" name="ingredient" type="text" maxlength="160" placeholder="Contoh: 2 siung bawang putih" required>
+        <button type="submit" id="ingredient-submit">Tambah bahan</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="sample-data.js" defer></script>
+  <script src="kelola-bahan.js" defer></script>
+</body>
+</html>

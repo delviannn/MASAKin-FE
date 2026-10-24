@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="kategori.css">
+  <title>Rekapitulasi Favorit — MASAKin</title>
+</head>
+<body>
+  <nav class="site-navbar" aria-label="Navigasi utama">
+    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links">
+      <a href="index.html">Beranda</a>
+      <a href="kelola-resep.html">Resep</a>
+      <a href="kategori.html">Kategori</a>
+      <a href="filterbahan.html">Cari resep</a>
+      <a href="langkahresep.html">Langkah</a>
+      <a href="favorit.html">Favorit</a>
+      <a href="rekapitulasibahan.html">Rekap bahan</a>
+      <a href="rekapitulasikategori.html">Rekap kategori</a>
+      <a href="rekapitulasifavorit.html" aria-current="page">Rekap favorit</a>
+    </div>
+  </nav>
+
+  <main class="manager">
+    <header class="page-header">
+      <span class="badge">MASAKin</span>
+      <h1>Rekapitulasi Favorit</h1>
+      <p class="description">Ringkasan resep yang kamu tandai sebagai favorit dan data paling sering dipilih.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="favorites-summary-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="favorites-summary-heading">Ringkasan</h2>
+          <p id="summary-updated" aria-live="polite"></p>
+        </div>
+        <button id="print-summary" type="button">Cetak rekap</button>
+      </div>
+      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+    </section>
+
+    <section class="panel" aria-labelledby="favorite-detail-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="favorite-detail-heading">Daftar resep favorit</h2>
+          <p>Semua resep yang ditandai sebagai favorit.</p>
+        </div>
+        <span id="favorite-total" class="favorite-count" aria-live="polite"></span>
+      </div>
+
+      <form id="favorite-search-form" class="filter-form">
+        <label for="favorite-search">Cari resep favorit</label>
+        <input id="favorite-search" type="search" placeholder="Ketik nama resep atau kategori">
+        <div class="form-actions">
+          <button id="clear-search" class="secondary" type="button">Reset</button>
+        </div>
+      </form>
+
+      <p id="result-status" class="result-count" aria-live="polite"></p>
+      <ul id="favorite-list" class="recipe-list"></ul>
+    </section>
+  </main>
+
+  <script src="sample-data.js" defer></script>
+  <script src="rekapitulasifavorit.js" defer></script>
+</body>
+</html>
