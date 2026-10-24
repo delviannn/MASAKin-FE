@@ -11,12 +11,11 @@
   const ingredientSummary = document.getElementById("ingredient-summary");
   const recipeStatus = document.getElementById("recipe-status");
   const recipeIngredientSummary = document.getElementById("recipe-ingredient-summary");
-  const printButton = document.getElementById("print-summary");
 
   if (
     !summaryCards || !summaryUpdated || !categorySummary || !ingredientFilter ||
     !clearIngredientFilter || !ingredientStatus || !ingredientSummary ||
-    !recipeStatus || !recipeIngredientSummary || !printButton
+    !recipeStatus || !recipeIngredientSummary
   ) {
     throw new Error("Elemen rekapitulasi tidak ditemukan di rekapitulasibahan.html.");
   }
@@ -207,7 +206,6 @@
     render();
     ingredientFilter.focus();
   });
-  printButton.addEventListener("click", () => window.print());
   window.addEventListener("storage", event => {
     if (event.key === STORAGE_KEY) render();
   });

@@ -9,11 +9,10 @@
   const clearSearch = document.getElementById("clear-search");
   const resultStatus = document.getElementById("result-status");
   const categoryRecipeList = document.getElementById("category-recipe-list");
-  const printButton = document.getElementById("print-summary");
 
   if (
     !summaryCards || !summaryUpdated || !categorySearch || !clearSearch ||
-    !resultStatus || !categoryRecipeList || !printButton
+    !resultStatus || !categoryRecipeList
   ) {
     throw new Error("Elemen rekap kategori dan resep tidak ditemukan di rekapitulasikategori.html.");
   }
@@ -154,7 +153,6 @@
     render();
     categorySearch.focus();
   });
-  printButton.addEventListener("click", () => window.print());
   window.addEventListener("storage", event => {
     if (event.key === STORAGE_KEY) render();
   });

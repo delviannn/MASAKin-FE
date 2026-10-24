@@ -1,7 +1,6 @@
 * {
   box-sizing: border-box;
 }
-
 :root {
   font-family: Poppins, "Segoe UI", Arial, sans-serif;
   color: #302b26;
@@ -833,24 +832,3 @@ button.secondary:hover {
 
 }
 
-@media print {
-  body {
-    padding: 0;
-    background: #fff;
-  }
-
-  .site-navbar {
-    display: none;
-  }
-
-  .panel {
-    box-shadow: none;
-    break-inside: avoid;
-  }
-
-  button,
-  #ingredient-filter-form,
-  #category-search-form {
-    display: none !important;
-  }
-}

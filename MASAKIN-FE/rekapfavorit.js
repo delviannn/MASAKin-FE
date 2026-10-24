@@ -8,11 +8,10 @@
   const clearSearch = document.getElementById("clear-search");
   const favoriteStatus = document.getElementById("favorite-status");
   const favoriteList = document.getElementById("favorite-list");
-  const printButton = document.getElementById("print-summary");
 
   if (
     !summaryCards || !summaryUpdated || !favoriteSearch || !clearSearch ||
-    !favoriteStatus || !favoriteList || !printButton
+    !favoriteStatus || !favoriteList
   ) {
     throw new Error("Elemen rekap favorit tidak ditemukan di rekapfavorit.html.");
   }
@@ -107,7 +106,6 @@
     render();
     favoriteSearch.focus();
   });
-  printButton.addEventListener("click", () => window.print());
   window.addEventListener("storage", event => {
     if (event.key === STORAGE_KEY) render();
   });
