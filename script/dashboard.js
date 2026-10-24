@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const KEY = "masakin_mahasiswa1_v1";
   const root = document.querySelector("main");
   if (!root) return;

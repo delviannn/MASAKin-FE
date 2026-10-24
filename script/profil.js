@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const KEY = "masakin_profile_name_v1";
   const form = document.getElementById("profile-form");
   const input = document.getElementById("profile-name");

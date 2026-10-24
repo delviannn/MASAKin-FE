@@ -76,12 +76,12 @@
       const label = document.createElement("span");
       label.textContent = `${name} (${data.recipes.filter(recipe => recipe.category === name).length} resep)`;
       const renameButton = document.createElement("button");
-      renameButton.className = "button button-secondary";
+      renameButton.className = "btn btn-outline-secondary button button-secondary";
       renameButton.type = "button";
       renameButton.dataset.renameCategory = name;
       renameButton.textContent = "Ubah";
       const deleteButton = document.createElement("button");
-      deleteButton.className = "button button-secondary";
+      deleteButton.className = "btn btn-outline-secondary button button-secondary";
       deleteButton.type = "button";
       deleteButton.dataset.deleteCategory = name;
       deleteButton.textContent = "Hapus";
@@ -110,6 +110,7 @@
     wrapper.append(document.createTextNode(label));
     const input = document.createElement("input");
     input.type = "text";
+    input.className = "form-control";
     input.value = value;
     input.placeholder = placeholder;
     input.maxLength = maxLength;
@@ -152,21 +153,21 @@
       actions.className = "step-actions";
       const up = document.createElement("button");
       up.type = "button";
-      up.className = "button button-secondary";
+      up.className = "btn btn-outline-secondary button button-secondary";
       up.dataset.moveStep = "-1";
       up.disabled = index === 0;
       up.setAttribute("aria-label", `Pindahkan langkah ${index + 1} ke atas`);
       up.textContent = "↑";
       const down = document.createElement("button");
       down.type = "button";
-      down.className = "button button-secondary";
+      down.className = "btn btn-outline-secondary button button-secondary";
       down.dataset.moveStep = "1";
       down.disabled = index === steps.length - 1;
       down.setAttribute("aria-label", `Pindahkan langkah ${index + 1} ke bawah`);
       down.textContent = "↓";
       const remove = document.createElement("button");
       remove.type = "button";
-      remove.className = "button button-secondary";
+      remove.className = "btn btn-outline-secondary button button-secondary";
       remove.dataset.removeStep = "";
       remove.setAttribute("aria-label", `Hapus langkah ${index + 1}`);
       remove.textContent = "Hapus";
@@ -189,6 +190,32 @@
       .map(input => input.value.trim());
   }
 
+  function scaleQuantity(quantity, factor) {
+    const value = String(quantity || "").trim();
+    const mixed = value.match(/^(\d+)\s+(\d+)\/(\d+)$/);
+    const fraction = value.match(/^(\d+)\/(\d+)$/);
+    const decimal = value.match(/^\d+(?:[.,]\d+)?$/);
+    let amount;
+    if (mixed && Number(mixed[3])) amount = Number(mixed[1]) + Number(mixed[2]) / Number(mixed[3]);
+    else if (fraction && Number(fraction[2])) amount = Number(fraction[1]) / Number(fraction[2]);
+    else if (decimal) amount = Number(value.replace(",", "."));
+    else return value || "secukupnya";
+    return (Math.round(amount * factor * 100) / 100).toLocaleString("id-ID", { maximumFractionDigits: 2 });
+  }
+
+  function updatePortionPanel(recipe, servings) {
+    const panel = list.querySelector(`[data-portion-panel="${Number(recipe.id)}"]`);
+    if (!panel) return;
+    const original = Math.max(1, Number(recipe.servings) || 1);
+    const target = Math.min(100, Math.max(1, Number(servings) || original));
+    panel.querySelector("[data-serving-value]").value = target;
+    panel.querySelector("[data-portion-ingredients]").innerHTML = (Array.isArray(recipe.ingredients) ? recipe.ingredients : [])
+      .map(item => {
+        const ingredient = readIngredient(item);
+        return `<li><span>${esc(ingredient.name || "Bahan")}</span><strong>${esc([scaleQuantity(ingredient.quantity, target / original), ingredient.unit].filter(Boolean).join(" "))}</strong></li>`;
+      }).join("");
+  }
+
   function render() {
     renderCategories();
     $("recipe-count").textContent = `${data.recipes.length} resep`;
@@ -199,7 +226,7 @@
     list.innerHTML = data.recipes.map(recipe => {
       const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
       const steps = Array.isArray(recipe.steps) ? recipe.steps : [];
-      return `<article class="recipe-card"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="recipe-category">${esc(recipe.category || "Tanpa kategori")}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta"><span>◷ ${Number(recipe.time) || 0} menit</span><span>·</span><span>${Number(recipe.servings) || 1} porsi</span></span><span class="recipe-description recipe-details-preview">${ingredients.length} bahan · ${steps.length} langkah</span></div><div class="recipe-card-actions"><button class="recipe-favorite-button" type="button" data-favorite="${Number(recipe.id)}" aria-pressed="${recipe.favorite === true}">${recipe.favorite === true ? "★ Favorit" : "☆ Tambah favorit"}</button><button class="button button-secondary" type="button" data-edit="${Number(recipe.id)}">Ubah resep</button><button class="button button-secondary" type="button" data-delete="${Number(recipe.id)}">Hapus</button></div></article>`;
+      return `<article class="card recipe-card"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="badge rounded-pill bg-light text-secondary recipe-category">${esc(recipe.category || "Tanpa kategori")}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta"><span>◷ ${Number(recipe.time) || 0} menit</span><span>·</span><span>${Number(recipe.servings) || 1} porsi</span></span><span class="recipe-description recipe-details-preview">${ingredients.length} bahan · ${steps.length} langkah</span></div><div class="recipe-card-actions"><button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-favorite="${Number(recipe.id)}" aria-pressed="${recipe.favorite === true}">${recipe.favorite === true ? "★ Favorit" : "☆ Tambah favorit"}</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-portions="${Number(recipe.id)}" aria-expanded="false" aria-controls="portion-panel-${Number(recipe.id)}">Atur porsi &amp; bahan</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-edit="${Number(recipe.id)}">Ubah resep</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-delete="${Number(recipe.id)}">Hapus</button></div><section id="portion-panel-${Number(recipe.id)}" class="portion-panel" data-portion-panel="${Number(recipe.id)}" hidden><h3>Sesuaikan porsi</h3><label for="portion-value-${Number(recipe.id)}">Porsi yang diinginkan</label><div class="portion-control"><button type="button" data-serving-step="-1" aria-label="Kurangi porsi">−</button><input id="portion-value-${Number(recipe.id)}" class="form-control" type="number" min="1" max="100" value="${Number(recipe.servings) || 1}" data-serving-value aria-label="Jumlah porsi"><button type="button" data-serving-step="1" aria-label="Tambah porsi">+</button></div><p class="portion-note">Takaran dihitung dari resep asli (${Number(recipe.servings) || 1} porsi).</p><ul data-portion-ingredients>${ingredients.map(item => { const ingredient = readIngredient(item); return `<li><span>${esc(ingredient.name || "Bahan")}</span><strong>${esc([ingredient.quantity || "secukupnya", ingredient.unit].filter(Boolean).join(" "))}</strong></li>`; }).join("")}</ul></section></article>`;
     }).join("");
   }
 
@@ -417,6 +444,23 @@
   list.addEventListener("click", event => {
     const button = event.target.closest("button");
     if (!button) return;
+    if (button.dataset.portions !== undefined) {
+      const recipe = data.recipes.find(item => Number(item.id) === Number(button.dataset.portions));
+      const panel = list.querySelector(`[data-portion-panel="${Number(button.dataset.portions)}"]`);
+      if (!recipe || !panel) return;
+      panel.hidden = !panel.hidden;
+      button.setAttribute("aria-expanded", String(!panel.hidden));
+      updatePortionPanel(recipe, panel.querySelector("[data-serving-value]").value);
+      return;
+    }
+    if (button.dataset.servingStep !== undefined) {
+      const panel = button.closest("[data-portion-panel]");
+      const input = panel?.querySelector("[data-serving-value]");
+      if (!input) return;
+      input.value = Math.min(100, Math.max(1, Number(input.value || 1) + Number(button.dataset.servingStep)));
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+      return;
+    }
     const id = Number(button.dataset.edit ?? button.dataset.delete ?? button.dataset.favorite);
     if (button.dataset.edit !== undefined) {
       const recipe = data.recipes.find(item => Number(item.id) === id);
@@ -443,6 +487,14 @@
         showMessage(`Resep “${recipe.name}” berhasil dihapus.`);
       }
     }
+  });
+
+  list.addEventListener("input", event => {
+    const input = event.target.closest("[data-serving-value]");
+    if (!input) return;
+    const recipeId = Number(input.closest("[data-portion-panel]").dataset.portionPanel);
+    const recipe = data.recipes.find(item => Number(item.id) === recipeId);
+    if (recipe) updatePortionPanel(recipe, input.value);
   });
 
   window.addEventListener("storage", event => {

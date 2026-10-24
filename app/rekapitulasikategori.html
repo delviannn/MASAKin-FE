@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="../style/kategori.css">
+  <link rel="stylesheet" href="../style/dashboard-return.css">
   <title>Rekapitulasi Kategori dan Resep — MASAKin</title>
 </head>
 <body>
@@ -18,7 +20,7 @@
       <p class="description">Lihat jumlah kategori, jumlah resep, dan resep yang termasuk dalam setiap kategori.</p>
     </header>
 
-    <section class="panel" aria-labelledby="category-summary-heading">
+    <section class="card panel" aria-labelledby="category-summary-heading">
       <div class="section-heading">
         <div>
           <h2 id="category-summary-heading">Ringkasan</h2>
@@ -28,13 +30,13 @@
       <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
     </section>
 
-    <section class="panel" aria-labelledby="details-heading">
+    <section class="card panel" aria-labelledby="details-heading">
       <h2 id="details-heading">Detail Kategori dan Resep</h2>
       <form id="category-search-form" class="filter-form">
         <label for="category-search">Cari kategori atau nama resep</label>
-        <input id="category-search" type="search" placeholder="Ketik nama kategori atau resep">
+        <input class="form-control" id="category-search" type="search" placeholder="Ketik nama kategori atau resep">
         <div class="form-actions">
-          <button id="clear-search" class="secondary" type="button">Reset</button>
+          <button id="clear-search" class="btn btn-outline-secondary secondary" type="button">Reset</button>
         </div>
       </form>
       <p id="result-status" class="result-count" aria-live="polite"></p>
@@ -43,5 +45,7 @@
   </main>
   <script src="../script/sample-data.js" defer></script>
   <script src="../script/rekapitulasikategori.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../script/dashboard-return.js"></script>
 </body>
 </html>

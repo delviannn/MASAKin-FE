@@ -54,6 +54,39 @@
     return recipes.filter(recipe => recipe.favorite === true);
   }
 
+  function readIngredient(item) {
+    if (typeof item !== "string") return {
+      name: String(item?.name || item?.ingredient || "Bahan"),
+      quantity: String(item?.quantity ?? item?.amount ?? "secukupnya"),
+      unit: String(item?.unit || "")
+    };
+    const match = item.trim().match(/^(\d+(?:[.,]\d+)?(?:\/\d+)?)\s+(\S+)\s+(.+)$/);
+    return match ? { name: match[3], quantity: match[1], unit: match[2] }
+      : { name: item.trim(), quantity: "secukupnya", unit: "" };
+  }
+
+  function scaleQuantity(quantity, factor) {
+    const value = String(quantity || "").trim();
+    const fraction = value.match(/^(\d+)\/(\d+)$/);
+    const decimal = value.match(/^\d+(?:[.,]\d+)?$/);
+    let amount;
+    if (fraction && Number(fraction[2])) amount = Number(fraction[1]) / Number(fraction[2]);
+    else if (decimal) amount = Number(value.replace(",", "."));
+    else return value || "secukupnya";
+    return (Math.round(amount * factor * 100) / 100).toLocaleString("id-ID", { maximumFractionDigits: 2 });
+  }
+
+  function updatePortions(recipe, panel, servings) {
+    const original = Math.max(1, Number(recipe.servings) || 1);
+    const target = Math.min(100, Math.max(1, Number(servings) || original));
+    panel.querySelector("[data-serving-value]").value = target;
+    panel.querySelector("[data-portion-ingredients]").innerHTML = (Array.isArray(recipe.ingredients) ? recipe.ingredients : [])
+      .map(item => {
+        const ingredient = readIngredient(item);
+        return `<li><span>${escapeHTML(ingredient.name)}</span><strong>${escapeHTML([scaleQuantity(ingredient.quantity, target / original), ingredient.unit].filter(Boolean).join(" "))}</strong></li>`;
+      }).join("");
+  }
+
   function renderSummary(data) {
     const recipes = data.recipes || [];
     const favorites = getFavoriteRecipes(recipes);
@@ -97,7 +130,7 @@
       favoriteList.innerHTML = `
         <li class="empty-state">
           Belum ada menu favorit. Buka daftar resep, lalu tekan ☆ Favorit pada resep pilihanmu.
-        </li>
+       </li>
       `;
       return;
     }
@@ -115,8 +148,15 @@
           <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
         </div>
         <div class="item-actions">
+          <button class="btn btn-outline-secondary secondary" type="button" data-portions="${Number(recipe.id)}" aria-expanded="false">Atur porsi</button>
           <span class="favorite-count">★ Favorit</span>
         </div>
+        <section class="favorite-portions" data-portion-panel="${Number(recipe.id)}" hidden>
+          <label for="favorite-portion-${Number(recipe.id)}">Porsi yang diinginkan</label>
+          <div class="favorite-portion-control"><button type="button" data-serving-step="-1" aria-label="Kurangi porsi">-</button><input id="favorite-portion-${Number(recipe.id)}" class="form-control" type="number" min="1" max="100" value="${Math.max(1, Number(recipe.servings) || 1)}" data-serving-value><button type="button" data-serving-step="1" aria-label="Tambah porsi">+</button></div>
+          <p>Takaran dihitung dari resep asli (${Math.max(1, Number(recipe.servings) || 1)} porsi).</p>
+          <ul data-portion-ingredients>${(Array.isArray(recipe.ingredients) ? recipe.ingredients : []).map(item => { const ingredient = readIngredient(item); return `<li><span>${escapeHTML(ingredient.name)}</span><strong>${escapeHTML([ingredient.quantity, ingredient.unit].filter(Boolean).join(" "))}</strong></li>`; }).join("")}</ul>
+        </section>
       </li>
     `).join("");
   }
@@ -137,6 +177,31 @@
   }
 
   favoriteSearch.addEventListener("input", render);
+  favoriteList.addEventListener("click", event => {
+    const button = event.target.closest("button");
+    if (!button) return;
+    const panel = button.closest("li")?.querySelector("[data-portion-panel]");
+    if (button.dataset.portions !== undefined && panel) {
+      const recipe = loadData().data?.recipes.find(item => Number(item.id) === Number(button.dataset.portions));
+      if (!recipe) return;
+      panel.hidden = !panel.hidden;
+      button.setAttribute("aria-expanded", String(!panel.hidden));
+      updatePortions(recipe, panel, panel.querySelector("[data-serving-value]").value);
+      return;
+    }
+    if (button.dataset.servingStep !== undefined && panel) {
+      const input = panel.querySelector("[data-serving-value]");
+      input.value = Math.min(100, Math.max(1, Number(input.value || 1) + Number(button.dataset.servingStep)));
+      input.dispatchEvent(new Event("input", { bubbles: true }));
+    }
+  });
+  favoriteList.addEventListener("input", event => {
+    const input = event.target.closest("[data-serving-value]");
+    if (!input) return;
+    const panel = input.closest("[data-portion-panel]");
+    const recipe = loadData().data?.recipes.find(item => Number(item.id) === Number(panel.dataset.portionPanel));
+    if (recipe) updatePortions(recipe, panel, input.value);
+  });
   clearSearch.addEventListener("click", () => {
     favoriteSearch.value = "";
     render();

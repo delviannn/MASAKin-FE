@@ -1168,6 +1168,16 @@ button:focus-visible {
 .recipe-card-actions .recipe-favorite-button { width: 100%; margin: 0; cursor: pointer; }
 .recipe-card-actions .button-secondary { width: 100%; }
 .recipe-details-preview { margin-top: 5px; }
+.portion-panel { grid-column: 1 / -1; margin: 0 12px 12px; padding: 13px; border: 1px solid #eee6dd; border-radius: 9px; background: #fffdfb; color: #62584f; font-size: 11px; }
+.portion-panel[hidden] { display: none; }
+.portion-panel h3 { margin: 0 0 9px; color: #39312b; font-size: 13px; }
+.portion-control { display: flex; align-items: center; gap: 7px; margin-top: 6px; }
+.portion-control button { width: 32px; height: 32px; border: 1px solid #e5d8ca; border-radius: 7px; background: #f8f4ef; color: #71563f; font-size: 17px; cursor: pointer; }
+.portion-control input { width: 68px; height: 32px; border: 1px solid #e5d8ca; border-radius: 7px; text-align: center; font: inherit; }
+.portion-note { margin: 8px 0; color: #8c837a; font-size: 10px; }
+.portion-panel ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+.portion-panel li { display: flex; justify-content: space-between; gap: 12px; padding-top: 6px; border-top: 1px solid #f0e9e2; }
+.portion-panel li strong { text-align: right; }
 .empty-state { grid-column: 1 / -1; padding: 22px; border: 1px dashed #e1d6ca; border-radius: 10px; background: #fff; color: var(--muted); font-size: 11px; line-height: 1.6; }
 .favorite-count { color: var(--muted); font-size: 10px; }
 .favorite-card { height: 100%; }

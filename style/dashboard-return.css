@@ -1,0 +1,28 @@
+.dashboard-return {
+  position: fixed;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  z-index: 1030;
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  border: 0;
+  border-radius: 999px;
+  padding: .7rem 1rem;
+  background: #79563e;
+  box-shadow: 0 .35rem 1rem rgb(51 45 40 / 18%);
+  color: #fff;
+  font-size: .8rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.dashboard-return:hover,
+.dashboard-return:focus-visible {
+  background: #62432f;
+  color: #fff;
+}
+
+@media (max-width: 420px) {
+  .dashboard-return { right: .75rem; bottom: max(.75rem, env(safe-area-inset-bottom)); padding: .65rem .85rem; }
+}

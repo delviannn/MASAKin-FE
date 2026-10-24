@@ -1,4 +1,4 @@
-﻿(() => {
+(() => {
   const data = JSON.parse(localStorage.getItem("masakin_mahasiswa1_v1") || '{"categories":[],"recipes":[]}');
   const recipes = Array.isArray(data.recipes) ? data.recipes : [];
   const categories = Array.isArray(data.categories) ? data.categories : [];

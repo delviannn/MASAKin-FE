@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8f7f4">
   <title>Cari Resep — MASAKin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="../style/styles.css">
+  <link rel="stylesheet" href="../style/dashboard-return.css">
 </head>
 <body>
   <div class="app-shell">
@@ -27,13 +29,13 @@
       <header class="topbar"><div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div><p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p><a class="avatar" href="profil.html" aria-label="Buka profil">D</a></header>
       <main>
         <section class="welcome-row"><div><p class="eyebrow">TEMUKAN INSPIRASI</p><h1>Cari resep <span aria-hidden="true">✦</span></h1><p class="welcome-copy">Temukan masakan dari nama, kategori, atau bahan yang tersedia.</p></div></section>
-        <section class="panel search-panel" aria-labelledby="filter-heading">
+        <section class="card panel search-panel" aria-labelledby="filter-heading">
           <div class="section-heading"><div><p class="eyebrow">PENCARIAN DAPUR</p><h2 id="filter-heading">Resep apa yang ingin kamu masak?</h2></div></div>
           <form id="filter-form" class="filter-form">
-            <div class="field"><label for="recipe-query">Nama atau deskripsi resep</label><input id="recipe-query" name="recipeQuery" type="search" placeholder="Contoh: soto, pedas, santan"></div>
-            <div class="field"><label for="ingredient-query">Bahan yang digunakan</label><input id="ingredient-query" name="ingredientQuery" type="search" placeholder="Contoh: ayam, bawang putih"></div>
-            <div class="field"><label for="category-filter">Kategori</label><select id="category-filter" name="category"><option value="">Semua kategori</option></select></div>
-            <div class="form-actions"><button class="button button-primary" type="submit">Cari resep</button><button id="reset-filter" class="button button-secondary" type="button">Reset</button></div>
+            <div class="field"><label for="recipe-query">Nama atau deskripsi resep</label><input class="form-control" id="recipe-query" name="recipeQuery" type="search" placeholder="Contoh: soto, pedas, santan"></div>
+            <div class="field"><label for="ingredient-query">Bahan yang digunakan</label><input class="form-control" id="ingredient-query" name="ingredientQuery" type="search" placeholder="Contoh: ayam, bawang putih"></div>
+            <div class="field"><label for="category-filter">Kategori</label><select class="form-select" id="category-filter" name="category"><option value="">Semua kategori</option></select></div>
+            <div class="form-actions"><button class="btn btn-primary button button-primary" type="submit">Cari resep</button><button id="reset-filter" class="btn btn-outline-secondary button button-secondary" type="button">Reset</button></div>
           </form>
           <p id="filter-status" class="section-copy search-status" aria-live="polite"></p>
           <ul id="filter-results" class="recipe-list filter-results" aria-live="polite"></ul>
@@ -44,5 +46,7 @@
   </div>
   <script src="../script/sample-data.js" defer></script>
   <script src="../script/filterbahan.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../script/dashboard-return.js"></script>
 </body>
 </html>

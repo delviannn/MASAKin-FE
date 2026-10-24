@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8f7f4">
   <title>MASAKin — Buku Resep Keluarga</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="../style/styles.css">
+  <link rel="stylesheet" href="../style/dashboard-return.css">
 </head>
 <body>
   <div class="app-shell">
@@ -46,7 +48,7 @@
             <h1>Masak enak, mulai dari rumah <span aria-hidden="true">✦</span></h1>
             <p class="welcome-copy">Simpan resep andalan, atur bahan, dan temukan ide masakan untuk keluarga.</p>
           </div>
-          <a class="button button-primary" href="kelola-resep.html"><span aria-hidden="true">＋</span> Tambah resep</a>
+          <a class="btn btn-primary button button-primary" href="kelola-resep.html"><span aria-hidden="true">＋</span> Tambah resep</a>
         </section>
 
         <section class="hero" aria-labelledby="hero-title">
@@ -100,41 +102,41 @@
           </div>
 
           <div class="recipe-list">
-            <article class="recipe-card">
+            <article class="card recipe-card">
               <button class="recipe-open" type="button" data-recipe-id="nasi-goreng" aria-label="Lihat resep nasi goreng sederhana">
                 <span class="recipe-image image-rice" aria-hidden="true"></span>
                 <span class="recipe-card-body">
-                  <span class="recipe-category">MASAKAN UTAMA</span>
+                  <span class="badge rounded-pill bg-light text-secondary recipe-category">MASAKAN UTAMA</span>
                   <strong class="recipe-title">Nasi goreng sederhana</strong>
                   <span class="recipe-description">Menu praktis dengan rasa rumahan yang selalu dirindukan.</span>
                   <span class="recipe-meta"><span>◷ 20 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
                 </span>
               </button>
-              <button class="recipe-favorite-button" type="button" data-home-favorite="nasi-goreng" aria-pressed="false">☆ Tambah favorit</button>
+              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="nasi-goreng" aria-pressed="false">☆ Tambah favorit</button>
             </article>
-            <article class="recipe-card">
+            <article class="card recipe-card">
               <button class="recipe-open" type="button" data-recipe-id="sup-ayam" aria-label="Lihat resep sup ayam">
                 <span class="recipe-image image-soup" aria-hidden="true"></span>
                 <span class="recipe-card-body">
-                  <span class="recipe-category">MASAKAN UTAMA</span>
+                  <span class="badge rounded-pill bg-light text-secondary recipe-category">MASAKAN UTAMA</span>
                   <strong class="recipe-title">Sup ayam</strong>
                   <span class="recipe-description">Sup hangat dengan sayuran segar untuk makan bersama.</span>
                   <span class="recipe-meta"><span>◷ 45 menit</span><span>·</span><span>Menengah</span><span class="recipe-rating">★ 4.8</span></span>
                 </span>
               </button>
-              <button class="recipe-favorite-button" type="button" data-home-favorite="sup-ayam" aria-pressed="false">☆ Tambah favorit</button>
+              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="sup-ayam" aria-pressed="false">☆ Tambah favorit</button>
             </article>
-            <article class="recipe-card">
+            <article class="card recipe-card">
               <button class="recipe-open" type="button" data-recipe-id="pisang-goreng" aria-label="Lihat resep pisang goreng">
                 <span class="recipe-image image-snack" aria-hidden="true"></span>
                 <span class="recipe-card-body">
-                  <span class="recipe-category">CAMILAN</span>
+                  <span class="badge rounded-pill bg-light text-secondary recipe-category">CAMILAN</span>
                   <strong class="recipe-title">Pisang goreng</strong>
                   <span class="recipe-description">Camilan manis dan renyah untuk dinikmati kapan saja.</span>
                   <span class="recipe-meta"><span>◷ 15 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
                 </span>
               </button>
-              <button class="recipe-favorite-button" type="button" data-home-favorite="pisang-goreng" aria-pressed="false">☆ Tambah favorit</button>
+              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="pisang-goreng" aria-pressed="false">☆ Tambah favorit</button>
             </article>
           </div>
         </section>
@@ -161,5 +163,7 @@
   <script src="../script/sample-data.js"></script>
   <script src="../script/dashboard.js"></script>
   <script src="../script/scripts.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script src="../script/dashboard-return.js"></script>
 </body>
 </html>
