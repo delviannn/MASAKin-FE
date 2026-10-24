@@ -96,6 +96,9 @@
       return;
     }
 
+    const recipe = data.recipes.find(item => item.id === recipeId);
+    if (!confirm(`Hapus "${recipe.name}" dari daftar favorit?`)) return;
+
     const nextData = {
       categories: data.categories,
       recipes: data.recipes.map(recipe => recipe.id === recipeId

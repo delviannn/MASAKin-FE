@@ -285,7 +285,12 @@ main.addEventListener("click", event => {
 
   const deleteButton = event.target.closest("[data-delete-ingredient]");
   if (deleteButton) {
-    recipes[selectedRecipeId].ingredients.splice(Number(deleteButton.dataset.deleteIngredient), 1);
+    const recipe = recipes[selectedRecipeId];
+    const ingredientIndex = Number(deleteButton.dataset.deleteIngredient);
+    const ingredient = recipe.ingredients[ingredientIndex];
+    if (!ingredient || !confirm(`Hapus bahan "${ingredient}" dari resep "${recipe.name}"?`)) return;
+
+    recipe.ingredients.splice(ingredientIndex, 1);
     editingIngredientIndex = null;
     renderRecipeDetail();
     return;
