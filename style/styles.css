@@ -1,5 +1,6 @@
 :root {
-  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+  font-family: "Times New Roman", Times, serif;
+  --bs-body-font-family: "Times New Roman", Times, serif;
   color: #332d28;
   background: #f8f7f4;
   font-synthesis: none;
@@ -21,6 +22,7 @@ html {
 }
 
 body {
+  font-family: "Times New Roman", Times, serif;
   min-width: 320px;
   min-height: 100vh;
   margin: 0;
@@ -242,7 +244,7 @@ p {
 .welcome-row h1 {
   margin: 0;
   color: #342c25;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: clamp(24px, 3vw, 34px);
   letter-spacing: -.75px;
   line-height: 1.2;
@@ -250,7 +252,7 @@ p {
 
 .welcome-row h1 > span {
   color: #bf976d;
-  font-family: "DM Sans", sans-serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: .65em;
 }
 
@@ -322,7 +324,7 @@ p {
 .hero h2 {
   margin: 13px 0 9px;
   color: #3b3028;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: clamp(28px, 4vw, 39px);
   letter-spacing: -.6px;
   line-height: 1.16;
@@ -423,7 +425,7 @@ p {
 .stat-card strong {
   display: block;
   color: #39312b;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 23px;
   line-height: 1.15;
 }
@@ -457,7 +459,7 @@ p {
 .section-heading h2 {
   margin: 0;
   color: #39312b;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 22px;
   letter-spacing: -.25px;
 }
@@ -631,7 +633,7 @@ button:focus-visible {
 
 .recipe-title {
   color: #39312b;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 15px;
   line-height: 1.35;
 }
@@ -994,7 +996,7 @@ button:focus-visible {
 
 .recipe-detail-page > h1 {
   margin-bottom: 8px;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .detail-columns {
@@ -1014,7 +1016,7 @@ button:focus-visible {
 
 .detail-panel h2 {
   margin: 0 0 15px;
-  font-family: "Playfair Display", Georgia, serif;
+  font-family: "Times New Roman", Times, serif;
   font-size: 19px;
 }
 
@@ -1127,7 +1129,7 @@ button:focus-visible {
 .panel { padding: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); }
 .form-panel { margin-top: 8px; scroll-margin-top: 84px; }
 .form-panel[hidden] { display: none; }
-.form-panel h2, .content-section h2 { margin: 0; color: #39312b; font-family: "Playfair Display", Georgia, serif; font-size: 22px; }
+.form-panel h2, .content-section h2 { margin: 0; color: #39312b; font-family: "Times New Roman", Times, serif; font-size: 22px; }
 .recipe-form { margin-top: 20px; }
 .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
 .field { display: grid; min-width: 0; gap: 7px; color: #514a43; font-size: 11px; font-weight: 700; }
@@ -1191,7 +1193,7 @@ button:focus-visible {
 .report-track { height: 8px; overflow: hidden; border-radius: 8px; background: #f1e8df; }
 .report-track span { display: block; height: 100%; border-radius: inherit; background: #a17b5c; }
 .profile-card { display: flex; align-items: center; gap: 16px; }
-.profile-avatar { display: grid; width: 62px; height: 62px; flex: 0 0 auto; place-items: center; border: 2px solid #f0e4da; border-radius: 50%; background: #e8d4c2; color: #62432f; font-family: "Playfair Display", Georgia, serif; font-size: 24px; }
+.profile-avatar { display: grid; width: 62px; height: 62px; flex: 0 0 auto; place-items: center; border: 2px solid #f0e4da; border-radius: 50%; background: #e8d4c2; color: #62432f; font-family: "Times New Roman", Times, serif; font-size: 24px; }
 @media (max-width:760px) { .form-grid,.shopping-layout { grid-template-columns: 1fr; } .field-wide { grid-column: auto; } }
 @media (max-width:520px) { .panel { padding: 16px; } .category-field { align-items: stretch; flex-direction: column; } .category-field .button-secondary { align-self: flex-start; } .ingredient-row { grid-template-columns: 1fr 1fr; } .ingredient-row .item-editor-field:first-child { grid-column: 1 / -1; } .step-row { grid-template-columns: 1fr; } .step-actions { justify-content: flex-start; } .recipe-list { grid-template-columns: 1fr; } }
 
@@ -1204,6 +1206,6 @@ button:focus-visible {
 .filter-results { grid-template-columns: 1fr; margin-top: 10px; }
 .filter-results .recipe-item { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
 .filter-results .recipe-details { min-width: 0; }
-.filter-results .recipe-details > strong { color: #39312b; font-family: "Playfair Display", Georgia, serif; font-size: 16px; }
+.filter-results .recipe-details > strong { color: #39312b; font-family: "Times New Roman", Times, serif; font-size: 16px; }
 .filter-results .recipe-details p { margin: 8px 0 0; color: var(--muted); font-size: 10px; line-height: 1.6; }
 @media (max-width:760px) { .filter-form { grid-template-columns: 1fr; } .filter-form .form-actions { grid-column: auto; } }
