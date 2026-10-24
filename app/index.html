@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f7f4">
+  <title>MASAKin — Buku Resep Keluarga</title>
+  <link rel="stylesheet" href="../style/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#beranda" aria-label="MASAKin, beranda">
+        <img class="brand-logo" src="../assets/masakin-logo.jpeg" alt="Logo MASAKin">
+      </a>
+
+            <nav class="sidebar-nav" aria-label="Navigasi utama">
+        <a class="nav-link active" href="index.html" aria-current="page"><span aria-hidden="true">⌂</span> Dashboard</a>
+        <a class="nav-link" href="kelola-resep.html"><span aria-hidden="true">◧</span> Resep</a><a class="nav-link" href="filterbahan.html"><span aria-hidden="true">&#8981;</span> Cari Resep</a>
+        <a class="nav-link" href="favorit.html"><span aria-hidden="true">♡</span> Favorit</a>
+        <a class="nav-link" href="daftar-belanja.html"><span aria-hidden="true">▦</span> Daftar Belanja</a>
+        <a class="nav-link" href="laporan.html"><span aria-hidden="true">▧</span> Laporan</a>
+        <a class="nav-link" href="profil.html"><span aria-hidden="true">◉</span> Profil</a>
+      </nav>
+
+      <div class="sidebar-note">
+        <span class="note-icon" aria-hidden="true">✦</span>
+        <strong>Masak lebih mudah</strong>
+        <p>Simpan resep keluarga dan temukan inspirasi untuk hari ini.</p>
+        <a href="kelola-resep.html">Mulai kelola resep <span aria-hidden="true">→</span></a>
+      </div>
+      <p class="sidebar-copyright">MASAKin · Resep jadi cerita.</p>
+    </aside>
+
+    <div class="main-content">
+      <header class="topbar">
+        <div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div>
+        <p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p>
+        <a class="avatar" href="profil.html" aria-label="Buka profil">D</a>
+      </header>
+
+      <main id="beranda">
+        <section class="welcome-row">
+          <div>
+            <p class="eyebrow">SELAMAT DATANG DI DAPUR</p>
+            <h1>Masak enak, mulai dari rumah <span aria-hidden="true">✦</span></h1>
+            <p class="welcome-copy">Simpan resep andalan, atur bahan, dan temukan ide masakan untuk keluarga.</p>
+          </div>
+          <a class="button button-primary" href="kelola-resep.html"><span aria-hidden="true">＋</span> Tambah resep</a>
+        </section>
+
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-content">
+            <span class="hero-tag"><span aria-hidden="true">✦</span> INSPIRASI HARI INI</span>
+            <h2 id="hero-title">Selalu ada cerita<br>di setiap masakan.</h2>
+            <p>Temukan resep sederhana yang bikin waktu makan bersama jadi lebih istimewa.</p>
+            <a class="button button-light" href="#resep">Jelajahi resep <span aria-hidden="true">→</span></a>
+          </div>
+        </section>
+
+        <section class="stats-grid" aria-label="Ringkasan dapur" data-dashboard-stats>
+          <article class="stat-card">
+            <span class="stat-icon icon-recipes" aria-hidden="true">▤</span>
+            <div><p>Total resep</p><strong data-stat="recipes">03</strong><span class="stat-foot">Resep tersimpan</span></div>
+            <a href="kelola-resep.html" aria-label="Lihat semua resep">↗</a>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon icon-favorites" aria-hidden="true">♡</span>
+            <div><p>Menu favorit</p><strong data-stat="favorites">00</strong><span class="stat-foot">Pilihan keluarga</span></div>
+            <a href="favorit.html" aria-label="Lihat menu favorit">↗</a>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon icon-ingredients" aria-hidden="true">◌</span>
+            <div><p>Bahan terdata</p><strong data-stat="ingredients">14</strong><span class="stat-foot">Dari resep tersimpan</span></div>
+            <a href="daftar-belanja.html" aria-label="Lihat rekap bahan">↗</a>
+          </article>
+          <article class="stat-card">
+            <span class="stat-icon icon-categories" aria-hidden="true">◈</span>
+            <div><p>Kategori</p><strong data-stat="categories">04</strong><span class="stat-foot">Di resep tersimpan</span></div>
+            <a href="laporan.html" aria-label="Lihat rekap kategori">↗</a>
+          </article>
+        </section>
+
+        <section class="content-section" id="resep" aria-labelledby="recipes-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">DARI DAPUR KELUARGA</p>
+              <h2 id="recipes-title">Resep pilihan</h2>
+              <p class="section-copy">Ide masakan sederhana untuk menemani harimu.</p>
+            </div>
+            <a class="text-link" href="kelola-resep.html">Lihat semua resep <span aria-hidden="true">→</span></a>
+          </div>
+
+          <div class="category-chips" aria-label="Pintasan kategori">
+            <a class="chip chip-active" href="kelola-resep.html">Semua resep</a>
+            <a class="chip" href="kelola-resep.html">Masakan utama</a>
+            <a class="chip" href="kelola-resep.html">Camilan</a>
+            <a class="chip" href="kelola-resep.html">Minuman</a>
+            <a class="chip chip-search" href="filterbahan.html"><span aria-hidden="true">⌕</span> Cari resep</a>
+          </div>
+
+          <div class="recipe-list">
+            <article class="recipe-card">
+              <button class="recipe-open" type="button" data-recipe-id="nasi-goreng" aria-label="Lihat resep nasi goreng sederhana">
+                <span class="recipe-image image-rice" aria-hidden="true"></span>
+                <span class="recipe-card-body">
+                  <span class="recipe-category">MASAKAN UTAMA</span>
+                  <strong class="recipe-title">Nasi goreng sederhana</strong>
+                  <span class="recipe-description">Menu praktis dengan rasa rumahan yang selalu dirindukan.</span>
+                  <span class="recipe-meta"><span>◷ 20 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
+                </span>
+              </button>
+              <button class="recipe-favorite-button" type="button" data-home-favorite="nasi-goreng" aria-pressed="false">☆ Tambah favorit</button>
+            </article>
+            <article class="recipe-card">
+              <button class="recipe-open" type="button" data-recipe-id="sup-ayam" aria-label="Lihat resep sup ayam">
+                <span class="recipe-image image-soup" aria-hidden="true"></span>
+                <span class="recipe-card-body">
+                  <span class="recipe-category">MASAKAN UTAMA</span>
+                  <strong class="recipe-title">Sup ayam</strong>
+                  <span class="recipe-description">Sup hangat dengan sayuran segar untuk makan bersama.</span>
+                  <span class="recipe-meta"><span>◷ 45 menit</span><span>·</span><span>Menengah</span><span class="recipe-rating">★ 4.8</span></span>
+                </span>
+              </button>
+              <button class="recipe-favorite-button" type="button" data-home-favorite="sup-ayam" aria-pressed="false">☆ Tambah favorit</button>
+            </article>
+            <article class="recipe-card">
+              <button class="recipe-open" type="button" data-recipe-id="pisang-goreng" aria-label="Lihat resep pisang goreng">
+                <span class="recipe-image image-snack" aria-hidden="true"></span>
+                <span class="recipe-card-body">
+                  <span class="recipe-category">CAMILAN</span>
+                  <strong class="recipe-title">Pisang goreng</strong>
+                  <span class="recipe-description">Camilan manis dan renyah untuk dinikmati kapan saja.</span>
+                  <span class="recipe-meta"><span>◷ 15 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
+                </span>
+              </button>
+              <button class="recipe-favorite-button" type="button" data-home-favorite="pisang-goreng" aria-pressed="false">☆ Tambah favorit</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="feature-section" aria-labelledby="features-title">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">SEMUA DALAM SATU DAPUR</p>
+              <h2 id="features-title">Resep terbaru</h2>
+              <p class="section-copy">Resep yang terakhir ditambahkan ke koleksi dapurmu.</p>
+            </div>
+          </div>
+          <div class="recipe-list" data-recent-recipes aria-live="polite"></div>
+        </section>
+      </main>
+
+      <footer class="page-footer">
+        <span>© 2026 MASAKin</span>
+        <span>Dari dapur keluarga, untuk cerita bersama.</span>
+        <a href="laporan.html">Lihat laporan <span aria-hidden="true">→</span></a>
+      </footer>
+    </div>
+  </div>
+  <script src="../script/sample-data.js"></script>
+  <script src="../script/dashboard.js"></script>
+  <script src="../script/scripts.js"></script>
+</body>
+</html>

@@ -3,29 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="kategori.css">
+  <link rel="stylesheet" href="../style/kategori.css">
   <title>Pencarian Resep</title>
 </head>
 <body>
   <nav class="site-navbar" aria-label="Navigasi utama">
-    <a class="site-brand" href="index.html"><img src="assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
-    <div class="site-nav-links">
-      <a href="index.html">Beranda</a>
-      <a href="kelola-resep.html">Resep</a>
-      <a href="kategori.html">Kategori</a>
-      <a href="filterbahan.html" aria-current="page">Cari resep</a>
-      <a href="langkahresep.html">Langkah</a>
-      <a href="favorit.html">Favorit</a>
-      <a href="rekapitulasibahan.html">Rekap bahan</a>
-      <a href="rekapitulasikategori.html">Rekap kategori</a>
-    </div>
+    <a class="site-brand" href="index.html"><img src="../assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
+    <div class="site-nav-links"><a href="index.html">Dashboard</a><a href="kelola-resep.html">Resep</a><a href="filterbahan.html">Cari resep</a><a href="favorit.html">Favorit</a><a href="daftar-belanja.html">Daftar belanja</a><a href="laporan.html">Laporan</a><a href="rekapitulasibahan.html">Rekap bahan</a><a href="rekapitulasikategori.html">Rekap kategori</a><a href="rekapitulasifavorit.html">Rekap favorit</a><a href="profil.html">Profil</a></div>
   </nav>
   <main class="manager">
     <header class="page-header">
       <span class="badge">MASAKin</span>
       <h1>Pencarian Resep</h1>
       <p class="description">Temukan resep berdasarkan nama, kategori, atau deskripsinya.</p>
-      <a class="back-link" href="kategori.html">← Kembali ke pengelolaan resep</a>
+      <a class="back-link" href="kelola-resep.html">← Kembali ke pengelolaan resep</a>
     </header>
 
     <section class="panel" aria-labelledby="search-heading">
@@ -50,7 +41,7 @@
       <ul id="search-results" class="recipe-list"></ul>
     </section>
   </main>
-  <script src="sample-data.js" defer></script>
-  <script src="pencarian.js" defer></script>
+  <script src="../script/sample-data.js" defer></script>
+  <script src="../script/pencarian.js" defer></script>
 </body>
 </html>

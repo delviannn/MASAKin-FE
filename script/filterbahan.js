@@ -57,11 +57,15 @@
 
   function ingredientsOf(recipe) {
     if (!Array.isArray(recipe.ingredients)) return [];
-    return recipe.ingredients.map(ingredient =>
-      typeof ingredient === "string"
-        ? ingredient
-        : String(ingredient?.name || ingredient?.ingredient || "")
-    ).filter(Boolean);
+    return recipe.ingredients.map(ingredient => {
+      if (typeof ingredient === "string") return ingredient;
+      if (!ingredient || typeof ingredient !== "object") return "";
+      return [
+        ingredient.quantity ?? ingredient.amount ?? "",
+        ingredient.unit || "",
+        ingredient.name || ingredient.ingredient || ""
+      ].filter(Boolean).join(" ");
+    }).filter(Boolean);
   }
 
   function renderCategoryOptions(categories) {

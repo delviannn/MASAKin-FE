@@ -56,21 +56,32 @@
   function ingredientsOf(recipe) {
     if (!Array.isArray(recipe.ingredients)) return [];
     return recipe.ingredients.map(ingredient => {
-      if (typeof ingredient === "string") return ingredient.trim();
-      return String(ingredient?.name || ingredient?.ingredient || "").trim();
-    }).filter(Boolean);
+      if (typeof ingredient === "string") {
+        const value = ingredient.trim();
+        const match = value.match(/^(\d+(?:[.,]\d+)?(?:\/\d+)?)\s+(\S+)\s+(.+)$/);
+        const details = match
+          ? { name: match[3], quantity: match[1], unit: match[2] }
+          : { name: value, quantity: "", unit: "" };
+        return { ...details, display: [details.quantity, details.unit, details.name].filter(Boolean).join(" ") };
+      }
+      if (!ingredient || typeof ingredient !== "object") return null;
+      const name = String(ingredient.name || ingredient.ingredient || "").trim();
+      const quantity = String(ingredient.quantity ?? ingredient.amount ?? "").trim();
+      const unit = String(ingredient.unit || "").trim();
+      return { name, quantity, unit, display: [quantity, unit, name].filter(Boolean).join(" ") };
+    }).filter(ingredient => ingredient?.name);
   }
 
   function createIngredientSummary(recipes) {
     const ingredients = new Map();
     recipes.forEach(recipe => {
       const seenInRecipe = new Set();
-      ingredientsOf(recipe).forEach(name => {
-        const key = name.toLocaleLowerCase("id");
+      ingredientsOf(recipe).forEach(ingredient => {
+        const key = ingredient.name.toLocaleLowerCase("id");
         if (seenInRecipe.has(key)) return;
         seenInRecipe.add(key);
         if (!ingredients.has(key)) {
-          ingredients.set(key, { name, recipes: [] });
+          ingredients.set(key, { name: ingredient.name, recipes: [] });
         }
         ingredients.get(key).recipes.push(recipe.name || "Resep tanpa nama");
       });
@@ -138,7 +149,7 @@
         recipe.name || "",
         recipe.category || "",
         recipe.description || "",
-        ...ingredients
+        ...ingredients.map(ingredient => ingredient.display)
       ].join(" ").toLocaleLowerCase("id");
       return searchable.includes(query);
     });
@@ -154,7 +165,7 @@
                 <span class="recipe-meta">${escapeHTML(recipe.category || "Tanpa kategori")} · ${Number(recipe.time) || 0} menit</span>
                 <p>${escapeHTML(recipe.description || "Belum ada deskripsi.")}</p>
                 <p><strong>Bahan untuk resep ini:</strong> ${ingredients.length
-                  ? ingredients.map(escapeHTML).join(", ")
+                  ? ingredients.map(ingredient => escapeHTML(ingredient.display)).join(", ")
                   : "Belum ada bahan yang dicatat."}</p>
               </div>
             </li>
