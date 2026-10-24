@@ -10,6 +10,8 @@
   const status = document.getElementById("filter-status");
   const results = document.getElementById("filter-results");
   const resetButton = document.getElementById("reset-filter");
+  const requestedCategory = new URLSearchParams(window.location.search).get("category");
+  let initialCategoryApplied = false;
 
   if (
     !form || !recipeQueryInput || !ingredientQueryInput || !categorySelect ||
@@ -85,6 +87,12 @@
       typeof category === "string" && category.trim()
     );
     renderCategoryOptions(categories);
+    if (!initialCategoryApplied) {
+      if (requestedCategory && categories.includes(requestedCategory)) {
+        categorySelect.value = requestedCategory;
+      }
+      initialCategoryApplied = true;
+    }
 
     const recipeQuery = recipeQueryInput.value.trim().toLocaleLowerCase("id");
     const ingredientQuery = ingredientQueryInput.value.trim().toLocaleLowerCase("id");
