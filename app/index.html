@@ -6,17 +6,19 @@
   <meta name="theme-color" content="#f8f7f4">
   <title>MASAKin — Buku Resep Keluarga</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style/styles.css">
+
+  <link rel="stylesheet" href="../style/bootstrap-theme.css">
+<link rel="stylesheet" href="../style/styles.css">
   <link rel="stylesheet" href="../style/dashboard-return.css">
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
+  <div class="app-shell container-fluid p-0">
+    <aside class="sidebar d-flex flex-column">
       <a class="brand" href="#beranda" aria-label="MASAKin, beranda">
         <img class="brand-logo" src="../assets/masakin-logo.jpeg" alt="Logo MASAKin">
       </a>
 
-            <nav class="sidebar-nav" aria-label="Navigasi utama">
+            <nav class="sidebar-nav nav flex-column" aria-label="Navigasi utama">
         <a class="nav-link active" href="index.html" aria-current="page"><span aria-hidden="true">⌂</span> Dashboard</a>
         <a class="nav-link" href="kelola-resep.html"><span aria-hidden="true">◧</span> Resep</a><a class="nav-link" href="filterbahan.html"><span aria-hidden="true">&#8981;</span> Cari Resep</a>
         <a class="nav-link" href="favorit.html"><span aria-hidden="true">♡</span> Favorit</a>
@@ -34,15 +36,15 @@
       <p class="sidebar-copyright">MASAKin · Resep jadi cerita.</p>
     </aside>
 
-    <div class="main-content">
-      <header class="topbar">
+    <div class="main-content container-fluid">
+      <header class="topbar d-flex align-items-center justify-content-between">
         <div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div>
         <p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p>
         <a class="avatar" href="profil.html" aria-label="Buka profil">D</a>
       </header>
 
       <main id="beranda">
-        <section class="welcome-row">
+        <section class="welcome-row d-flex align-items-center justify-content-between flex-wrap gap-3">
           <div>
             <p class="eyebrow">SELAMAT DATANG DI DAPUR</p>
             <h1>Masak enak, mulai dari rumah <span aria-hidden="true">✦</span></h1>
@@ -60,23 +62,23 @@
           </div>
         </section>
 
-        <section class="stats-grid" aria-label="Ringkasan dapur" data-dashboard-stats>
-          <article class="stat-card">
+        <section class="stats-grid row g-3" aria-label="Ringkasan dapur" data-dashboard-stats>
+          <article class="stat-card col-12 col-sm-6 col-xl-3">
             <span class="stat-icon icon-recipes" aria-hidden="true">▤</span>
             <div><p>Total resep</p><strong data-stat="recipes">03</strong><span class="stat-foot">Resep tersimpan</span></div>
             <a href="kelola-resep.html" aria-label="Lihat semua resep">↗</a>
           </article>
-          <article class="stat-card">
+          <article class="stat-card col-12 col-sm-6 col-xl-3">
             <span class="stat-icon icon-favorites" aria-hidden="true">♡</span>
             <div><p>Menu favorit</p><strong data-stat="favorites">00</strong><span class="stat-foot">Pilihan keluarga</span></div>
             <a href="favorit.html" aria-label="Lihat menu favorit">↗</a>
           </article>
-          <article class="stat-card">
+          <article class="stat-card col-12 col-sm-6 col-xl-3">
             <span class="stat-icon icon-ingredients" aria-hidden="true">◌</span>
             <div><p>Bahan terdata</p><strong data-stat="ingredients">14</strong><span class="stat-foot">Dari resep tersimpan</span></div>
             <a href="rekapitulasibahan.html" aria-label="Lihat rekap bahan">↗</a>
           </article>
-          <article class="stat-card">
+          <article class="stat-card col-12 col-sm-6 col-xl-3">
             <span class="stat-icon icon-categories" aria-hidden="true">◈</span>
             <div><p>Kategori</p><strong data-stat="categories">04</strong><span class="stat-foot">Di resep tersimpan</span></div>
             <a href="rekapitulasikategori.html" aria-label="Lihat rekap kategori">↗</a>
@@ -101,9 +103,9 @@
             <a class="chip chip-search" href="filterbahan.html"><span aria-hidden="true">⌕</span> Cari resep</a>
           </div>
 
-          <div class="recipe-list">
-            <article class="card recipe-card">
-              <button class="recipe-open" type="button" data-recipe-id="nasi-goreng" aria-label="Lihat resep nasi goreng sederhana">
+          <div class="recipe-list row g-3">
+            <article class="card recipe-card col-12 col-md-6 col-xl-4">
+              <button class="btn btn-link recipe-open" type="button" data-recipe-id="nasi-goreng" aria-label="Lihat resep nasi goreng sederhana">
                 <span class="recipe-image image-rice" aria-hidden="true"></span>
                 <span class="recipe-card-body">
                   <span class="badge rounded-pill bg-light text-secondary recipe-category">MASAKAN UTAMA</span>
@@ -112,10 +114,9 @@
                   <span class="recipe-meta"><span>◷ 20 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
                 </span>
               </button>
-              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="nasi-goreng" aria-pressed="false">☆ Tambah favorit</button>
             </article>
-            <article class="card recipe-card">
-              <button class="recipe-open" type="button" data-recipe-id="sup-ayam" aria-label="Lihat resep sup ayam">
+            <article class="card recipe-card col-12 col-md-6 col-xl-4">
+              <button class="btn btn-link recipe-open" type="button" data-recipe-id="sup-ayam" aria-label="Lihat resep sup ayam">
                 <span class="recipe-image image-soup" aria-hidden="true"></span>
                 <span class="recipe-card-body">
                   <span class="badge rounded-pill bg-light text-secondary recipe-category">MASAKAN UTAMA</span>
@@ -124,10 +125,9 @@
                   <span class="recipe-meta"><span>◷ 45 menit</span><span>·</span><span>Menengah</span><span class="recipe-rating">★ 4.8</span></span>
                 </span>
               </button>
-              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="sup-ayam" aria-pressed="false">☆ Tambah favorit</button>
             </article>
-            <article class="card recipe-card">
-              <button class="recipe-open" type="button" data-recipe-id="pisang-goreng" aria-label="Lihat resep pisang goreng">
+            <article class="card recipe-card col-12 col-md-6 col-xl-4">
+              <button class="btn btn-link recipe-open" type="button" data-recipe-id="pisang-goreng" aria-label="Lihat resep pisang goreng">
                 <span class="recipe-image image-snack" aria-hidden="true"></span>
                 <span class="recipe-card-body">
                   <span class="badge rounded-pill bg-light text-secondary recipe-category">CAMILAN</span>
@@ -136,7 +136,6 @@
                   <span class="recipe-meta"><span>◷ 15 menit</span><span>·</span><span>Mudah</span><span class="recipe-rating">★ 4.9</span></span>
                 </span>
               </button>
-              <button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-home-favorite="pisang-goreng" aria-pressed="false">☆ Tambah favorit</button>
             </article>
           </div>
         </section>
@@ -149,7 +148,7 @@
               <p class="section-copy">Resep yang terakhir ditambahkan ke koleksi dapurmu.</p>
             </div>
           </div>
-          <div class="recipe-list" data-recent-recipes aria-live="polite"></div>
+          <div class="recipe-list row g-3" data-recent-recipes aria-live="polite"></div>
         </section>
       </main>
 
@@ -163,6 +162,7 @@
   <script src="../script/sample-data.js"></script>
   <script src="../script/dashboard.js"></script>
   <script src="../script/scripts.js"></script>
+  <script src="../script/recipe-detail.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="../script/dashboard-return.js"></script>
 </body>

@@ -159,7 +159,7 @@
       ? matchingRecipes.map(recipe => {
           const ingredients = ingredientsOf(recipe);
           return `
-            <li class="recipe-item">
+            <li class="recipe-item" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="button" aria-label="Lihat detail ${escapeHTML(recipe.name || "Resep tanpa nama")}">
               <div class="recipe-details">
                 <strong>${escapeHTML(recipe.name || "Resep tanpa nama")}</strong>
                 <span class="recipe-meta">${escapeHTML(recipe.category || "Tanpa kategori")} · ${Number(recipe.time) || 0} menit</span>
@@ -200,10 +200,10 @@
     const favoriteCount = data.recipes.filter(recipe => recipe.favorite === true).length;
 
     summaryCards.innerHTML = `
-      <article class="summary-card"><strong>${data.recipes.length}</strong><span>Resep</span></article>
-      <article class="summary-card"><strong>${ingredients.length}</strong><span>Jenis bahan</span></article>
-      <article class="summary-card"><strong>${ingredientUses}</strong><span>Jumlah penggunaan bahan</span></article>
-      <article class="summary-card"><strong>${favoriteCount}</strong><span>Resep favorit</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${data.recipes.length}</strong><span>Resep</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${ingredients.length}</strong><span>Jenis bahan</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${ingredientUses}</strong><span>Jumlah penggunaan bahan</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${favoriteCount}</strong><span>Resep favorit</span></article>
     `;
     summaryUpdated.textContent = `Diperbarui ${new Date().toLocaleString("id-ID")}`;
     renderCategorySummary(data);

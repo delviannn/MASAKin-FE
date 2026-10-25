@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#f8f7f4"><title>Resep — MASAKin</title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style/styles.css">
+
+  <link rel="stylesheet" href="../style/bootstrap-theme.css">
+<link rel="stylesheet" href="../style/styles.css">
   <link rel="stylesheet" href="../style/dashboard-return.css">
 </head>
-<body><div class="app-shell">
-  <aside class="sidebar"><a class="brand" href="index.html" aria-label="MASAKin, dashboard"><img class="brand-logo" src="../assets/masakin-logo.jpeg" alt="Logo MASAKin"></a>
-    <nav class="sidebar-nav" aria-label="Navigasi utama">
+<body><div class="app-shell container-fluid p-0">
+  <aside class="sidebar d-flex flex-column"><a class="brand" href="index.html" aria-label="MASAKin, dashboard"><img class="brand-logo" src="../assets/masakin-logo.jpeg" alt="Logo MASAKin"></a>
+    <nav class="sidebar-nav nav flex-column" aria-label="Navigasi utama">
       <a class="nav-link" href="index.html"><span aria-hidden="true">⌂</span> Dashboard</a>
       <a class="nav-link active" href="kelola-resep.html" aria-current="page"><span aria-hidden="true">◧</span> Resep</a>
       <a class="nav-link" href="filterbahan.html"><span aria-hidden="true">⌕</span> Cari Resep</a>
@@ -20,23 +22,23 @@
     <div class="sidebar-note"><span class="note-icon" aria-hidden="true">✦</span><strong>Masak lebih mudah</strong><p>Simpan resep keluarga dan temukan inspirasi untuk hari ini.</p><a href="#recipe-form-panel">Mulai kelola resep <span aria-hidden="true">→</span></a></div>
     <p class="sidebar-copyright">MASAKin · Resep jadi cerita.</p>
   </aside>
-  <div class="main-content"><header class="topbar"><div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div><p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p><a class="avatar" href="profil.html" aria-label="Buka profil">D</a></header>
-    <main><section class="welcome-row"><div><p class="eyebrow">DAPUR KELUARGA</p><h1>Semua resep, satu tempat <span aria-hidden="true">✦</span></h1><p class="welcome-copy">Atur resep lengkap dengan kategori, bahan, dan langkah memasak.</p></div><button id="add-recipe" class="btn btn-primary button button-primary" type="button">＋ Tambah resep</button></section>
+  <div class="main-content container-fluid"><header class="topbar d-flex align-items-center justify-content-between"><div class="mobile-brand"><img src="../assets/masakin-logo.jpeg" alt=""> MASAKin</div><p class="topbar-greeting">Dapur keluarga <span aria-hidden="true">⌄</span></p><a class="avatar" href="profil.html" aria-label="Buka profil">D</a></header>
+    <main><section class="welcome-row d-flex align-items-center justify-content-between flex-wrap gap-3"><div><p class="eyebrow">DAPUR KELUARGA</p><h1>Semua resep, satu tempat <span aria-hidden="true">✦</span></h1><p class="welcome-copy">Atur resep lengkap dengan kategori, bahan, dan langkah memasak.</p></div><button id="add-recipe" class="btn btn-primary button button-primary" type="button">＋ Tambah resep</button></section>
       <section id="recipe-form-panel" class="card panel form-panel" aria-labelledby="recipe-form-heading" hidden><div class="section-heading"><div><p class="eyebrow">RESEP KELUARGA</p><h2 id="recipe-form-heading">Tambah resep</h2></div><button id="cancel-recipe-edit" class="btn btn-outline-secondary button button-secondary" type="button">Batal</button></div>
-        <form id="recipe-form" class="recipe-form"><input id="recipe-id" name="id" type="hidden">
-          <div class="form-grid"><div class="field"><label for="recipe-name">Nama resep</label><input class="form-control" id="recipe-name" name="name" maxlength="80" placeholder="Contoh: Soto ayam kampung" required></div>
+        <form id="recipe-form" class="recipe-form"><input class="form-control" id="recipe-id" name="id" type="hidden">
+          <div class="form-grid row g-3"><div class="field"><label for="recipe-name">Nama resep</label><input class="form-control" id="recipe-name" name="name" maxlength="80" placeholder="Contoh: Soto ayam kampung" required></div>
           <div class="field"><label for="recipe-category">Kategori</label><div class="category-field"><select class="form-select" id="recipe-category" name="category" required></select><button id="add-category" class="btn btn-outline-secondary button button-secondary" type="button">＋ Tambah Kategori</button><button id="toggle-categories" class="btn btn-outline-secondary button button-secondary" type="button" aria-expanded="false" aria-controls="category-management">Kelola kategori</button></div><div id="category-form" class="category-form" role="group" aria-labelledby="category-form-heading" hidden><span id="category-form-heading">Nama kategori</span><label class="visually-hidden" for="category-name">Nama kategori</label><input class="form-control" id="category-name" name="categoryName" maxlength="40" aria-required="true"><div class="category-form-actions"><button id="category-submit" class="btn btn-primary button button-primary" type="button">Simpan kategori</button><button id="cancel-category" class="btn btn-outline-secondary button button-secondary" type="button">Batal</button></div></div><div id="category-management" class="category-management" hidden></div></div>
           <div class="field field-wide"><label for="recipe-description">Deskripsi</label><textarea class="form-control" id="recipe-description" name="description" maxlength="240" rows="2" placeholder="Deskripsi singkat resep"></textarea></div>
           <div class="field"><label for="recipe-servings">Porsi</label><input class="form-control" id="recipe-servings" name="servings" type="number" min="1" max="20" value="2" required></div>
           <div class="field"><label for="recipe-time">Waktu memasak (menit)</label><input class="form-control" id="recipe-time" name="time" type="number" min="1" max="1440" value="30" required></div>
           <fieldset class="field field-wide editor-field"><legend>Bahan <span class="field-hint">Nama, jumlah, dan satuan bahan</span></legend><div id="ingredient-list" class="item-editor"></div><button id="add-ingredient" class="btn btn-outline-secondary button button-secondary" type="button">＋ Tambah bahan</button></fieldset>
           <fieldset class="field field-wide editor-field"><legend>Langkah memasak <span class="field-hint">Urutan langkah dapat diubah</span></legend><ol id="step-list" class="item-editor step-editor"></ol><button id="add-step" class="btn btn-outline-secondary button button-secondary" type="button">＋ Tambah langkah</button></fieldset></div>
-          <div class="form-actions"><button type="submit" id="recipe-submit" class="btn btn-primary button button-primary">Simpan resep</button></div>
+          <div class="form-actions d-flex flex-wrap gap-2"><button type="submit" id="recipe-submit" class="btn btn-primary button button-primary">Simpan resep</button></div>
         </form>
       </section>
-      <section class="content-section" aria-labelledby="recipes-heading"><div class="section-heading"><div><p class="eyebrow">KOLEKSI DAPUR</p><h2 id="recipes-heading">Resep tersimpan</h2><p class="section-copy">Edit detail resep atau tandai sebagai favorit.</p></div><span id="recipe-count" class="favorite-count" aria-live="polite"></span></div><p id="recipe-status" class="section-copy recipe-status" role="status" aria-live="polite"></p><div id="recipe-list" class="recipe-list recipe-grid" aria-live="polite"></div></section>
+      <section class="content-section" aria-labelledby="recipes-heading"><div class="section-heading"><div><p class="eyebrow">KOLEKSI DAPUR</p><h2 id="recipes-heading">Resep tersimpan</h2><p class="section-copy">Buka detail resep untuk melihat bahan, langkah, dan mengatur favorit.</p></div><span id="recipe-count" class="favorite-count" aria-live="polite"></span></div><p id="recipe-status" class="section-copy recipe-status" role="status" aria-live="polite"></p><div id="recipe-list" class="recipe-list recipe-grid row g-3" aria-live="polite"></div></section>
     </main><footer class="page-footer"><span>© 2026 MASAKin</span><span>Dari dapur keluarga, untuk cerita bersama.</span><a href="index.html">Kembali ke dashboard →</a></footer>
   </div>
-</div><script src="../script/sample-data.js"></script><script src="../script/kelola-resep.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</div><script src="../script/sample-data.js"></script><script src="../script/kelola-resep.js"></script><script src="../script/recipe-detail.js"></script><script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="../script/dashboard-return.js"></script>
 </body></html>

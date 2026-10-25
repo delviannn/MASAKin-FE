@@ -108,7 +108,7 @@
         </div>
         ${category.visibleRecipes.length
           ? `<ul class="recipe-list">${category.visibleRecipes.map(recipe => `
-              <li class="recipe-item">
+              <li class="recipe-item" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="button" aria-label="Lihat detail ${escapeHTML(recipe.name || "Resep tanpa nama")}">
                 <div class="recipe-details">
                   <strong>${escapeHTML(recipe.name || "Resep tanpa nama")}</strong>
                   <span class="recipe-meta">${Number(recipe.time) || 0} menit</span>
@@ -138,10 +138,10 @@
     const categories = createCategorySummary(data);
     const categoriesWithRecipes = categories.filter(category => category.recipes.length).length;
     summaryCards.innerHTML = `
-      <article class="summary-card"><strong>${categories.length}</strong><span>Total kategori</span></article>
-      <article class="summary-card"><strong>${data.recipes.length}</strong><span>Total resep</span></article>
-      <article class="summary-card"><strong>${categoriesWithRecipes}</strong><span>Kategori berisi resep</span></article>
-      <article class="summary-card"><strong>${categories.length - categoriesWithRecipes}</strong><span>Kategori tanpa resep</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${categories.length}</strong><span>Total kategori</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${data.recipes.length}</strong><span>Total resep</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${categoriesWithRecipes}</strong><span>Kategori berisi resep</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${categories.length - categoriesWithRecipes}</strong><span>Kategori tanpa resep</span></article>
     `;
     summaryUpdated.textContent = `Diperbarui ${new Date().toLocaleString("id-ID")}`;
     renderCategorySummary(categories);

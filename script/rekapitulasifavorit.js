@@ -101,10 +101,10 @@
     const share = recipes.length ? Math.round((favorites.length / recipes.length) * 100) : 0;
 
     summaryCards.innerHTML = `
-      <article class="summary-card"><strong>${recipes.length}</strong><span>Total resep</span></article>
-      <article class="summary-card"><strong>${favorites.length}</strong><span>Resep favorit</span></article>
-      <article class="summary-card"><strong>${favoriteCategories}</strong><span>Kategori favorit</span></article>
-      <article class="summary-card"><strong>${share}%</strong><span>Persentase favorit</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${recipes.length}</strong><span>Total resep</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${favorites.length}</strong><span>Resep favorit</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${favoriteCategories}</strong><span>Kategori favorit</span></article>
+      <article class="summary-card col-12 col-sm-6 col-xl-3"><strong>${share}%</strong><span>Persentase favorit</span></article>
     `;
 
     summaryUpdated.textContent = `Diperbarui ${new Date().toLocaleString("id-ID")}`;
@@ -129,7 +129,7 @@
     if (!favorites.length) {
       favoriteList.innerHTML = `
         <li class="empty-state">
-          Belum ada menu favorit. Buka daftar resep, lalu tekan ☆ Favorit pada resep pilihanmu.
+          Belum ada menu favorit. Buka detail resep untuk menambahkan resep ke favorit.
        </li>
       `;
       return;
@@ -141,7 +141,7 @@
     }
 
     favoriteList.innerHTML = matching.map(recipe => `
-      <li class="recipe-item favorite-card">
+      <li class="recipe-item favorite-card" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="group" aria-label="Lihat detail ${escapeHTML(recipe.name || "Resep tanpa nama")}; tekan Enter">
         <div class="recipe-details">
           <strong>${escapeHTML(recipe.name || "Resep tanpa nama")}</strong>
           <span class="recipe-meta">${escapeHTML(recipe.category || "Tanpa kategori")} · ${Number(recipe.time) || 0} menit</span>
@@ -177,6 +177,13 @@
   }
 
   favoriteSearch.addEventListener("input", render);
+  document.addEventListener("masakin:recipes-updated", () => {
+    const result = loadData();
+    if (!result.error) {
+      renderSummary(result.data);
+      renderFavorites(result.data);
+    }
+  });
   favoriteList.addEventListener("click", event => {
     const button = event.target.closest("button");
     if (!button) return;

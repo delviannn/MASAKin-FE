@@ -86,7 +86,7 @@
     }
 
     results.innerHTML = matchingRecipes.map(recipe => `
-      <li class="recipe-item">
+      <li class="recipe-item col-12" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="button" aria-label="Lihat detail ${escapeHTML(recipe.name)}">
         <div class="recipe-details">
           <strong>${escapeHTML(recipe.name)}</strong>
           <span class="recipe-meta">${escapeHTML(recipe.category)} · ${Number(recipe.time) || 0} menit</span>

@@ -6,12 +6,14 @@
   <meta name="theme-color" content="#f8f7f4">
   <title>Masuk — MASAKin</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style/login.css">
+
+  <link rel="stylesheet" href="../style/bootstrap-theme.css">
+<link rel="stylesheet" href="../style/login.css">
   <link rel="stylesheet" href="../style/dashboard-return.css">
 </head>
 <body>
-  <main class="login-shell">
-    <section class="login-card" aria-labelledby="login-title">
+  <main class="login-shell row g-0 min-vh-100">
+    <section class="login-card col-12 col-md-6 d-flex flex-column justify-content-center" aria-labelledby="login-title">
       <a class="login-brand" href="login.html" aria-label="MASAKin">
         <img src="../assets/masakin-logo.jpeg" alt="">
         <span>MASAKin</span>
@@ -27,15 +29,16 @@
         <label for="password">Kata sandi</label>
         <div class="password-field">
           <input class="form-control" id="password" name="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
-          <button id="toggle-password" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
+          <button id="toggle-password" class="btn btn-link" type="button" aria-label="Tampilkan kata sandi" aria-pressed="false">Lihat</button>
         </div>
         <p class="preview-note"><strong>Mode preview:</strong> isi dengan data apa saja. Tidak ada akun yang diverifikasi atau kredensial yang disimpan.</p>
         <p id="login-status" class="login-status" role="status" aria-live="polite"></p>
         <button class="btn btn-primary login-submit" type="submit">Masuk ke preview <span aria-hidden="true">→</span></button>
       </form>
       <p class="login-footer">MASAKin · Resep jadi cerita.</p>
+      <p class="register-prompt">Belum punya akun? <a href="daftar-akun.html">Daftar akun</a></p>
     </section>
-    <aside class="login-aside" aria-label="Tentang MASAKin">
+    <aside class="login-aside col-12 col-md-6 d-flex flex-column justify-content-center" aria-label="Tentang MASAKin">
       <span class="aside-mark" aria-hidden="true">✦</span>
       <p class="login-eyebrow">DARI DAPUR KELUARGA</p>
       <h2>Masak enak,<br>mulai dari rumah.</h2>

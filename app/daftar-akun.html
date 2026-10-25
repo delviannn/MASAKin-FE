@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f8f7f4">
+  <title>Daftar akun — MASAKin</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="../style/bootstrap-theme.css">
+<link rel="stylesheet" href="../style/login.css">
+  <link rel="stylesheet" href="../style/daftar-akun.css">
+</head>
+<body>
+  <main class="login-shell row g-0 min-vh-100">
+    <section class="login-card register-card col-12 col-md-6 d-flex flex-column justify-content-center" aria-labelledby="register-title">
+      <a class="login-brand" href="login.html" aria-label="MASAKin"><img src="../assets/masakin-logo.jpeg" alt=""><span>MASAKin</span></a>
+      <p class="login-eyebrow">DAPUR KELUARGA</p>
+      <h1 id="register-title">Buat akun baru</h1>
+      <p class="login-intro">Mulai simpan resep andalan dan atur kebutuhan dapur keluarga.</p>
+
+      <form id="register-form" class="login-form" novalidate>
+        <label for="register-name">Nama pengguna</label>
+        <input class="form-control" id="register-name" name="name" type="text" autocomplete="name" maxlength="50" placeholder="Contoh: Dapur keluarga" required>
+
+        <label for="register-email">Email</label>
+        <input class="form-control" id="register-email" name="email" type="email" autocomplete="email" maxlength="100" placeholder="nama@email.com" required>
+
+        <label for="register-password">Kata sandi</label>
+        <input class="form-control" id="register-password" name="password" type="password" autocomplete="new-password" minlength="8" placeholder="Minimal 8 karakter" required>
+
+        <label for="register-confirm-password">Konfirmasi kata sandi</label>
+        <input class="form-control" id="register-confirm-password" name="confirmPassword" type="password" autocomplete="new-password" placeholder="Ulangi kata sandi" required>
+
+        <p class="preview-note"><strong>Mode preview:</strong> formulir ini hanya untuk mencoba tampilan. Akun tidak dibuat dan data tidak disimpan.</p>
+        <p id="register-status" class="login-status" role="status" aria-live="polite"></p>
+        <button class="btn btn-primary login-submit" type="submit">Daftar akun <span aria-hidden="true">→</span></button>
+      </form>
+      <p class="register-prompt">Sudah punya akun? <a href="login.html">Masuk</a></p>
+      <p class="login-footer">MASAKin · Resep jadi cerita.</p>
+    </section>
+    <aside class="login-aside col-12 col-md-6 d-flex flex-column justify-content-center" aria-label="Tentang MASAKin">
+      <span class="aside-mark" aria-hidden="true">✦</span>
+      <p class="login-eyebrow">DARI DAPUR KELUARGA</p>
+      <h2>Resep keluarga,<br>tersimpan rapi.</h2>
+      <p>Bangun koleksi resep dan temukan inspirasi untuk momen makan bersama.</p>
+    </aside>
+  </main>
+  <script src="../script/daftar-akun.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>

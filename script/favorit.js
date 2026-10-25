@@ -20,7 +20,7 @@
       const data = load();
       const items = data.recipes.filter(recipe => recipe.favorite === true);
       count.textContent = `${items.length} resep`;
-      list.innerHTML = items.length ? items.map(recipe => `<article class="recipe-card favorite-card"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="badge rounded-pill bg-light text-secondary recipe-category">${esc(recipe.category)}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta">◷ ${Number(recipe.time) || 0} menit · ${Number(recipe.servings) || 1} porsi</span></div><div class="recipe-card-actions"><button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-remove-favorite="${Number(recipe.id)}" aria-pressed="true">★ Hapus dari favorit</button></div></article>`).join("") : '<div class="empty-state">Belum ada resep favorit. Buka halaman Resep dan tandai pilihanmu.</div>';
+      list.innerHTML = items.length ? items.map(recipe => `<article class="recipe-card favorite-card col-12 col-md-6 col-xl-4" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="button" aria-label="Lihat detail ${esc(recipe.name)}"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="badge rounded-pill bg-light text-secondary recipe-category">${esc(recipe.category)}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta">◷ ${Number(recipe.time) || 0} menit · ${Number(recipe.servings) || 1} porsi</span></div></article>`).join("") : '<div class="empty-state">Belum ada resep favorit. Buka halaman Resep dan tandai pilihanmu.</div>';
       status.textContent = message;
     } catch (error) {
       console.error("Daftar favorit gagal dimuat:", error);
@@ -30,27 +30,8 @@
     }
   }
 
-  list.addEventListener("click", event => {
-    const button = event.target.closest("[data-remove-favorite]");
-    if (!button) return;
-    const id = Number(button.dataset.removeFavorite);
-    try {
-      const data = load();
-      const recipe = data.recipes.find(item => Number(item.id) === id);
-      if (!recipe) return;
-      const next = {
-        ...data,
-        recipes: data.recipes.map(item => item.id === id ? { ...item, favorite: false } : item)
-      };
-      localStorage.setItem(KEY, JSON.stringify(next));
-      render(`Resep “${recipe.name}” dihapus dari favorit.`);
-    } catch (error) {
-      console.error("Perubahan favorit gagal disimpan:", error);
-      status.textContent = "Perubahan favorit gagal disimpan. Periksa ruang penyimpanan browser.";
-    }
-  });
-
   render();
+  document.addEventListener("masakin:recipes-updated", () => render());
   window.addEventListener("storage", event => {
     if (event.key === KEY) render("Daftar favorit diperbarui dari tab lain.");
   });

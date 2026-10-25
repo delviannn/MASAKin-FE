@@ -1,0 +1,15 @@
+.register-card { padding-top: 34px; padding-bottom: 34px; }
+.register-card .login-brand { margin-bottom: 34px; }
+.register-card .login-intro { margin-bottom: 14px; }
+.register-card .login-form { gap: 6px; }
+.register-card .login-form label { margin-top: 4px; }
+.register-card .login-form input { min-height: 42px; }
+.register-card .preview-note { margin-top: 10px; }
+.register-card .login-footer { margin-top: 18px; }
+.register-prompt { margin: 16px 0 0; color: #81786e; font-size: 12px; }
+.register-prompt a { color: #79563e; font-weight: 700; text-decoration: none; }
+.register-prompt a:hover { color: #62432f; text-decoration: underline; }
+@media (max-width: 760px) {
+  .register-card { padding-top: 28px; }
+  .register-card .login-brand { margin-bottom: 26px; }
+}

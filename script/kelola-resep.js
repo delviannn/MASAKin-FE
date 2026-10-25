@@ -226,7 +226,7 @@
     list.innerHTML = data.recipes.map(recipe => {
       const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
       const steps = Array.isArray(recipe.steps) ? recipe.steps : [];
-      return `<article class="card recipe-card"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="badge rounded-pill bg-light text-secondary recipe-category">${esc(recipe.category || "Tanpa kategori")}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta"><span>◷ ${Number(recipe.time) || 0} menit</span><span>·</span><span>${Number(recipe.servings) || 1} porsi</span></span><span class="recipe-description recipe-details-preview">${ingredients.length} bahan · ${steps.length} langkah</span></div><div class="recipe-card-actions"><button class="btn btn-outline-secondary recipe-favorite-button" type="button" data-favorite="${Number(recipe.id)}" aria-pressed="${recipe.favorite === true}">${recipe.favorite === true ? "★ Favorit" : "☆ Tambah favorit"}</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-portions="${Number(recipe.id)}" aria-expanded="false" aria-controls="portion-panel-${Number(recipe.id)}">Atur porsi &amp; bahan</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-edit="${Number(recipe.id)}">Ubah resep</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-delete="${Number(recipe.id)}">Hapus</button></div><section id="portion-panel-${Number(recipe.id)}" class="portion-panel" data-portion-panel="${Number(recipe.id)}" hidden><h3>Sesuaikan porsi</h3><label for="portion-value-${Number(recipe.id)}">Porsi yang diinginkan</label><div class="portion-control"><button type="button" data-serving-step="-1" aria-label="Kurangi porsi">−</button><input id="portion-value-${Number(recipe.id)}" class="form-control" type="number" min="1" max="100" value="${Number(recipe.servings) || 1}" data-serving-value aria-label="Jumlah porsi"><button type="button" data-serving-step="1" aria-label="Tambah porsi">+</button></div><p class="portion-note">Takaran dihitung dari resep asli (${Number(recipe.servings) || 1} porsi).</p><ul data-portion-ingredients>${ingredients.map(item => { const ingredient = readIngredient(item); return `<li><span>${esc(ingredient.name || "Bahan")}</span><strong>${esc([ingredient.quantity || "secukupnya", ingredient.unit].filter(Boolean).join(" "))}</strong></li>`; }).join("")}</ul></section></article>`;
+      return `<article class="card recipe-card col-12 col-md-6 col-xl-4" data-recipe-detail="${Number(recipe.id)}" tabindex="0" role="group" aria-label="Lihat detail ${esc(recipe.name)}; tekan Enter"><div class="recipe-image image-rice" aria-hidden="true"></div><div class="recipe-card-body"><span class="badge rounded-pill bg-light text-secondary recipe-category">${esc(recipe.category || "Tanpa kategori")}</span><strong class="recipe-title">${esc(recipe.name)}</strong><span class="recipe-description">${esc(recipe.description || "Belum ada deskripsi.")}</span><span class="recipe-meta"><span>◷ ${Number(recipe.time) || 0} menit</span><span>·</span><span>${Number(recipe.servings) || 1} porsi</span></span><span class="recipe-description recipe-details-preview">${ingredients.length} bahan · ${steps.length} langkah</span></div><div class="recipe-card-actions"><button class="btn btn-outline-secondary button button-secondary" type="button" data-portions="${Number(recipe.id)}" aria-expanded="false" aria-controls="portion-panel-${Number(recipe.id)}">Atur porsi &amp; bahan</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-edit="${Number(recipe.id)}">Ubah resep</button><button class="btn btn-outline-secondary button button-secondary" type="button" data-delete="${Number(recipe.id)}">Hapus</button></div><section id="portion-panel-${Number(recipe.id)}" class="portion-panel" data-portion-panel="${Number(recipe.id)}" hidden><h3>Sesuaikan porsi</h3><label for="portion-value-${Number(recipe.id)}">Porsi yang diinginkan</label><div class="portion-control"><button type="button" data-serving-step="-1" aria-label="Kurangi porsi">−</button><input id="portion-value-${Number(recipe.id)}" class="form-control" type="number" min="1" max="100" value="${Number(recipe.servings) || 1}" data-serving-value aria-label="Jumlah porsi"><button type="button" data-serving-step="1" aria-label="Tambah porsi">+</button></div><p class="portion-note">Takaran dihitung dari resep asli (${Number(recipe.servings) || 1} porsi).</p><ul data-portion-ingredients>${ingredients.map(item => { const ingredient = readIngredient(item); return `<li><span>${esc(ingredient.name || "Bahan")}</span><strong>${esc([ingredient.quantity || "secukupnya", ingredient.unit].filter(Boolean).join(" "))}</strong></li>`; }).join("")}</ul></section></article>`;
     }).join("");
   }
 
@@ -461,22 +461,10 @@
       input.dispatchEvent(new Event("input", { bubbles: true }));
       return;
     }
-    const id = Number(button.dataset.edit ?? button.dataset.delete ?? button.dataset.favorite);
+    const id = Number(button.dataset.edit ?? button.dataset.delete);
     if (button.dataset.edit !== undefined) {
       const recipe = data.recipes.find(item => Number(item.id) === id);
       if (recipe) openForm(recipe);
-      return;
-    }
-    if (button.dataset.favorite !== undefined) {
-      const recipe = data.recipes.find(item => Number(item.id) === id);
-      const next = {
-        ...data,
-        recipes: data.recipes.map(item => item.id === id ? { ...item, favorite: item.favorite !== true } : item)
-      };
-      if (save(next)) {
-        render();
-        showMessage(`Resep “${recipe?.name || ""}” ${recipe?.favorite === true ? "dihapus dari" : "ditambahkan ke"} favorit.`);
-      }
       return;
     }
     if (button.dataset.delete !== undefined) {

@@ -4,16 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-  <link rel="stylesheet" href="../style/kategori.css">
+
+  <link rel="stylesheet" href="../style/bootstrap-theme.css">
+<link rel="stylesheet" href="../style/kategori.css">
   <link rel="stylesheet" href="../style/dashboard-return.css">
   <title>Rekapitulasi Kategori dan Resep — MASAKin</title>
 </head>
 <body>
-  <nav class="site-navbar" aria-label="Navigasi utama">
+  <nav class="site-navbar navbar navbar-expand-lg" aria-label="Navigasi utama">
     <a class="site-brand" href="index.html"><img src="../assets/masakin-logo.jpeg" alt=""> <span>MASAKin</span></a>
-    <div class="site-nav-links"><a href="index.html">Dashboard</a><a href="kelola-resep.html">Resep</a><a href="filterbahan.html">Cari resep</a><a href="favorit.html">Favorit</a><a href="daftar-belanja.html">Daftar belanja</a><a href="laporan.html">Laporan</a><a href="rekapitulasibahan.html">Rekap bahan</a><a href="rekapitulasikategori.html" aria-current="page">Rekap kategori</a><a href="rekapitulasifavorit.html">Rekap favorit</a><a href="profil.html">Profil</a></div>
+    <div class="site-nav-links nav flex-column"><a href="index.html">Dashboard</a><a href="kelola-resep.html">Resep</a><a href="filterbahan.html">Cari resep</a><a href="favorit.html">Favorit</a><a href="daftar-belanja.html">Daftar belanja</a><a href="laporan.html">Laporan</a><a href="rekapitulasibahan.html">Rekap bahan</a><a href="rekapitulasikategori.html" aria-current="page">Rekap kategori</a><a href="rekapitulasifavorit.html">Rekap favorit</a><a href="profil.html">Profil</a></div>
   </nav>
-  <main class="manager">
+  <main class="manager container py-4">
     <header class="page-header">
       <span class="badge">MASAKin</span>
       <h1>Rekapitulasi Kategori dan Resep</h1>
@@ -27,15 +29,15 @@
           <p id="summary-updated" aria-live="polite"></p>
         </div>
       </div>
-      <div id="summary-cards" class="summary-cards" aria-live="polite"></div>
+      <div id="summary-cards" class="summary-cards row g-3" aria-live="polite"></div>
     </section>
 
     <section class="card panel" aria-labelledby="details-heading">
       <h2 id="details-heading">Detail Kategori dan Resep</h2>
-      <form id="category-search-form" class="filter-form">
+      <form id="category-search-form" class="filter-form row g-3">
         <label for="category-search">Cari kategori atau nama resep</label>
         <input class="form-control" id="category-search" type="search" placeholder="Ketik nama kategori atau resep">
-        <div class="form-actions">
+        <div class="form-actions d-flex flex-wrap gap-2">
           <button id="clear-search" class="btn btn-outline-secondary secondary" type="button">Reset</button>
         </div>
       </form>
@@ -45,6 +47,7 @@
   </main>
   <script src="../script/sample-data.js" defer></script>
   <script src="../script/rekapitulasikategori.js" defer></script>
+  <script src="../script/recipe-detail.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 <script src="../script/dashboard-return.js"></script>
 </body>
