@@ -20,4 +20,5 @@ Contoh resep akan dimuat pada penggunaan pertama. Resep, kategori, profil, dan d
 
 Aplikasi belum memiliki akun sungguhan atau server untuk menyinkronkan data. Login preview hanya memerlukan isian non-kosong; kata sandi disamarkan di kolom input dan tidak disimpan. Data resep dan profil tersimpan di `localStorage` browser. Jangan menyimpan kata sandi atau informasi sensitif di aplikasi. Nilai yang ditampilkan sebagai teks pada halaman di-escape untuk mencegah input pengguna diperlakukan sebagai markup HTML.
 
-Pratinjau: [MASAKin](https://delviannn.github.io/MASAKin-FE/)
+Pratinjau: https://delviannn.github.io/MASAKin-FE
+
